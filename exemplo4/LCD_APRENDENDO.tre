@@ -1,0 +1,69 @@
+ÀÄLCD_APRENDENDO
+   ÃÄMAIN  0/262  Ram=4
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄlcd_init  0/31  Ram=0
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄoutput  0/51  Ram=2
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@delay_ms1  0/21  Ram=1
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄoutput  0/51  Ram=2
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄlcd_write_cmd  0/30  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄ@ITOF  0/31  Ram=2
+   ³  ÃÄ@MULFF  0/117  Ram=13
+   ³  ÃÄ@MULFF  0/117  Ram=13
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_LU_642  0/99  Ram=9
+   ³  ³  ÀÄlcd_write_dat  0/30  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_L32D_642FPFPF  0/224  Ram=13
+   ³  ³  ÃÄ@MULFF  0/117  Ram=13
+   ³  ³  ÃÄ@FTOSD  (Inline)  Ram=5
+   ³  ³  ÃÄ@DIV3232  0/79  Ram=13
+   ³  ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@DIV3232  0/79  Ram=13
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_write_dat  0/30  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_LU_642  0/99  Ram=9
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_L32D_642FPFPF  0/224  Ram=13
+   ³  ³  ÀÄ*
+   ³  ÀÄlcd_write_dat  0/30  Ram=1
+   ³     ÀÄ*
+   ÀÄTIMER0_isr  0/14  Ram=1

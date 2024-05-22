@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar",
+            "type": "shell",
+            "command": "/caminho/para/xc8", // Substitua pelo caminho real do compilador XC8
+            "args": [
+                "--chip=16F877A",
+                "--output=hex",
+                "main.c"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

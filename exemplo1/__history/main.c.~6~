@@ -1,0 +1,55 @@
+#include <main.h>
+
+int8 teste;
+int8 teste0;
+int8 teste1;
+int8 teste2;
+int8 teste3;
+int8 teste4;
+int8 teste5;
+int8 teste6;
+int8 teste7;
+int8 teste8;
+int8 teste9;
+int8 teste10;
+int8 teste11;
+int8 teste12;
+int8 teste13;
+int8 teste14;
+int8 teste15;
+int8 teste16;
+int8 teste17;
+int8 teste18;
+int8 teste19;
+int8 teste20;
+int8 teste21;
+int8 teste22;
+int8 teste23;
+int8 teste24;
+int8 teste25;
+int8 teste26;
+int8 teste27;
+int8 teste28;
+int8 teste29;
+
+void main(){
+
+   output_low(LED);
+
+   while(TRUE){
+
+      if(input(BTN_LIGA) == 0){
+      
+         output_high(LED);
+      
+      }
+      
+      else{
+      
+         output_low(LED);
+      
+      }
+      
+   }
+
+}

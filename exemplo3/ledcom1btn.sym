@@ -1,0 +1,55 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     filtro
+021     main.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  main
+000004  @cinit1
+00000C  @cinit2
+
+Project Directory:
+    D:\projetos_pic\Nova pasta\exemplo3\
+
+Project Files:
+    ledcom1btn.c                                            [17-mai-24 12:04  CRC=44D7F903]
+    ledcom1btn.h                                            [17-mai-24 11:47  CRC=75377D9D]
+    ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F628A.h [15-jan-18 15:52  CRC=D7C7303C]
+
+Source signature=699DD718
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=B828
+
+Units:
+    ledcom1btn (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   ledcom1btn.xsym
+    Errors:      ledcom1btn.err
+    Ext Symbols: ledcom1btn.esym
+    INHX8:       ledcom1btn.hex
+    Symbols:     ledcom1btn.sym
+    List:        ledcom1btn.lst
+    Debug/COFF:  ledcom1btn.cof
+    Project:     ledcom1btn.ccspjt
+    Call Tree:   ledcom1btn.tre
+    Statistics:  ledcom1btn.STA

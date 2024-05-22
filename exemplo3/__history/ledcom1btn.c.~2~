@@ -1,0 +1,17 @@
+#include <ledcom1btn.h>
+
+void main(){
+
+   output_low(led);
+
+   while(TRUE){
+
+      if(input(botao) == 0){
+      
+         output_toggle(led);
+      
+      }
+   
+   }
+
+}

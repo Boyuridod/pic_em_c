@@ -1,0 +1,49 @@
+[PROJECT]
+Target=ledcom1btn.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=ledcom1btn.c
+[Directories]
+Include=
+[D:\projetos_pic\Nova pasta\ledcom1btn]
+Type=4
+[mru-list]
+1=ledcom1btn.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=17-05-2024
+D1_L=10
+D1_L1=[42466]Project Opened.
+D1_L2=[42491]Started Editing.
+D1_L3=[42726]Stopped Editing.
+TotalEdit=98
+TotalDebug=0
+D1_E=98
+D1_D=0
+D1_L4=[42726]Project Closed.
+D1_L5=[42821]Project Opened.
+D1_L6=[42833]Started Editing.
+D1_L7=[43447]Stopped Editing.
+D1_L8=[43457]Started Editing.
+D1_L9=[49079]Stopped Editing.
+D1_L10=[49091]Project Closed.
+
+[Opened Files]
+1=ledcom1btn.c
+t1=5
+Count=1
+[ledcom1btn.c]
+Type=4
+
+[defines]
+buildcount=3
+[Units]
+Count=1
+1=ledcom1btn (main)

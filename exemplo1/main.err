@@ -1,0 +1,5 @@
+Compiling D:\projetos_pic\Nova pasta\exemplo1\main on 17-mai-24 at 11:20
+>>> Warning 202 "main.c" Line 3(6,11): Variable never used:   teste
+      Memory usage:   ROM=2%      RAM=3% - 3%
+      0 Errors,  1 Warnings.
+Build Successful.

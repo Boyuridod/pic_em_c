@@ -1,0 +1,12 @@
+#include <main.h>
+
+void main(){
+
+   output_low(LED);
+
+   while(TRUE){
+
+      
+   }
+
+}

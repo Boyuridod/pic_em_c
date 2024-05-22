@@ -1,0 +1,54 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  main
+000004  @cinit1
+00000C  @cinit2
+
+Project Directory:
+    D:\projetos_pic\Nova pasta\exemplo2\
+
+Project Files:
+    exemplo2.c                                              [17-mai-24 11:30  CRC=D8102B21]
+    exemplo2.h                                              [17-mai-24 11:29  CRC=7C15A028]
+    ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F628A.h [15-jan-18 15:52  CRC=D7C7303C]
+
+Source signature=03B42BC1
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=C3F4
+
+Units:
+    exemplo2 (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   exemplo2.xsym
+    Errors:      exemplo2.err
+    Ext Symbols: exemplo2.esym
+    INHX8:       exemplo2.hex
+    Symbols:     exemplo2.sym
+    List:        exemplo2.lst
+    Debug/COFF:  exemplo2.cof
+    Project:     exemplo2.ccspjt
+    Call Tree:   exemplo2.tre
+    Statistics:  exemplo2.STA

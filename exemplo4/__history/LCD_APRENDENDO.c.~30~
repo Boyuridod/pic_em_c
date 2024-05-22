@@ -1,0 +1,67 @@
+#include <LCD_APRENDENDO.h>
+#include <lcd_8bits.c>
+
+int1 fim_1s = 0;
+int8 contador = 250;
+int16 potenciometro, temperatura, temp_graus; // pot entrada 1, temp entrada 0
+float tensao, inverso1023 = (1 / 1023.0);
+
+#INT_TIMER0
+void  TIMER0_isr(void)
+{
+   set_timer0(get_timer0() + 6);
+   contador--;
+   
+   if(contador == 0){
+      contador = 250;
+      fim_1s = 1;
+   }
+}
+
+void main()
+{
+   setup_adc_ports(AN0_AN1_AN3);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_16|RTCC_8_BIT);      //4,0 ms overflow
+   
+   lcd_init();
+   printf(lcd_write_dat, "A0=");
+   lcd_gotoxy(1, 2);
+   printf(lcd_write_dat, "A1=");
+//!   lcd_write_dat('I');
+//!   lcd_write_dat('F');
+//!   lcd_write_dat('T');
+//!   lcd_write_dat('M');
+   
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   while(TRUE)
+   {
+      if(fim_1s){
+         fim_1s = 0;
+         set_adc_channel(0);
+         delay_us(40);
+         temperatura = read_adc();
+         set_adc_channel(1);
+         delay_us(40);
+         potenciometro = read_adc();
+         tensao = potenciometro * inverso1023 * 5.0;
+         
+         lcd_gotoxy(4, 1);
+         printf(lcd_write_dat, "%04Lu", temperatura);
+         // Mostra a temperatura em graus
+         // Tem que fazer a conversão 341 = 27.5°C e 750 = 75.5°C
+         temp_graus = (0.117 * temperatura) + 27.5;
+         lcd_gotoxy(4, 2);
+         printf(lcd_write_dat, "%4.2f°C", temp_graus);
+         
+         lcd_gotoxy(4, 2);
+         printf(lcd_write_dat, "%04Lu", potenciometro);
+         // Mostra a tensão do potenciometro
+         lcd_gotoxy(10, 2);
+         printf(lcd_write_dat, "%4.2fV", tensao);
+         
+      }
+   }
+}

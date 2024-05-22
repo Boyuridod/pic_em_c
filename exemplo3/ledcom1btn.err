@@ -1,0 +1,5 @@
+Compiling D:\projetos_pic\Nova pasta\exemplo3\ledcom1btn on 17-mai-24 at 12:06
+>>> Warning 203 "ledcom1btn.c" Line 15(1,1): Condition always TRUE
+      Memory usage:   ROM=2%      RAM=3% - 3%
+      0 Errors,  1 Warnings.
+Build Successful.

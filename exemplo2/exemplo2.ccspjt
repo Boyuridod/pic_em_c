@@ -1,0 +1,43 @@
+[PROJECT]
+Target=exemplo2.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=exemplo2.c
+[Directories]
+Include=
+[D:\projetos_pic\Nova pasta\exemplo2\exemplo2]
+Type=4
+[mru-list]
+1=exemplo2.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=17-05-2024
+D1_L=4
+D1_L1=[41348]Project Opened.
+D1_L2=[41359]Started Editing.
+D1_L3=[41755]Stopped Editing.
+TotalEdit=2
+TotalDebug=0
+D1_E=2
+D1_D=0
+D1_L4=[42466]Project Closed.
+
+[Opened Files]
+1=exemplo2.c
+t1=1
+Count=1
+[exemplo2.c]
+Type=4
+[Units]
+Count=1
+1=exemplo2 (main)
+
+[defines]
+buildcount=1

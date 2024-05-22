@@ -1,0 +1,28 @@
+#include <ledcom1btn.h>
+
+int8 filtro;
+
+#define v_filtro 100
+
+void main(){
+
+   output_low(led);
+   
+   while(TRUE){
+
+      if(input(botao) == 0){
+      
+         for(filtro = v_filtro; filtro > 0; filtro--){
+         
+            if(input(botao) == 0)
+               filtro = v_filtro;
+         
+         }
+      
+         output_toggle(led);
+      
+      }
+   
+   }
+
+}

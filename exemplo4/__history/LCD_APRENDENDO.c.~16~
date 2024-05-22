@@ -1,0 +1,78 @@
+#include <LCD_APRENDENDO.h>
+#include <lcd_8bits.c>
+
+int1 fim_1s = 0;
+int8 contador = 250;
+int16 potenciometro, temperatura;
+
+#INT_TIMER0
+void TIMER0_isr(void)
+{
+   set_timer0(get_timer0() + 6);
+   contador--;
+   if (contador == 0)
+   {
+
+      contador = 250;
+      fim_1s = 1;
+   }
+}
+
+#define _bootloader
+
+// NOTE - User must include bootloader.h in application program
+#include <bootloader.h>
+#include <loader.c>
+
+#define PUSH_BUTTON PIN_A5
+
+#INT_GLOBAL
+void isr(void)
+{
+   jump_to_isr(LOADER_END + 5);
+}
+
+#org LOADER_END + 1, LOADER_END + 2
+void application(void)
+{
+   while (TRUE)
+      ;
+}
+
+void main()
+{
+   setup_adc_ports(AN0_AN1_AN3);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_16 | RTCC_8_BIT); // 4,0 ms overflow
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   lcd_init();
+
+   lcd_gotoxy(1, 2);
+   //!   lcd_write_dat('I');
+   //!   lcd_write_dat('F');
+   //!   lcd_write_dat('T');
+   //!   lcd_write_dat('M');
+   printf(lcd_write_dat, "IFTM");
+
+   white(TRUE)
+   {
+
+      if (fim_1s)
+      {
+         fim_1s = 0;
+         set_adc_channel(0);
+         delay_us(40);
+         temperatura = read_adc();
+         set_adc_channel(1);
+         delay_us(40);
+         potenciometro = read_adc();
+         lcd_gotoxy(4, 1);
+         printf(lcd_write_dat, "%Lu", temperatura);
+         lcd_gotoxy(4, 2);
+         printf(lcd_write_dat, "%Lu", potenciometro);
+      }
+   }
+}

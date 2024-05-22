@@ -1,0 +1,55 @@
+#include <LCD_APRENDENDO.h>
+
+int1 fim1s = 0;
+int8 contador = 250;
+
+#INT_TIMER0
+void  TIMER0_isr(void) 
+{
+   set_timer0(gat_timer0() + 6);
+   contador--;
+   if(contador == 0){
+
+      contador = 250;
+      fim_1s = 1;
+
+   }
+}
+ 
+#define _bootloader
+
+// NOTE - User must include bootloader.h in application program
+#include <bootloader.h>
+#include <loader.c>
+
+#define PUSH_BUTTON PIN_A5
+
+#INT_GLOBAL
+void isr(void){
+   jump_to_isr(LOADER_END+5);
+}
+
+#org LOADER_END+1, LOADER_END+2
+void application(void) {
+  while(TRUE);
+}
+
+void main()
+{
+   setup_adc_ports(AN0_AN1_AN3);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_16|RTCC_8_BIT);      //4,0 ms overflow
+
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+ 
+   // Enter Bootloader if Pin A5 is low after a RESET
+   if(!input(PIN_A5))
+   {
+      load_program();
+   }
+   
+   application();
+
+}
