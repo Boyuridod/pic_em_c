@@ -1,0 +1,46 @@
+
+#include <pwm_heater_cooler.h>
+#include <lcd_8bits.c>
+
+// Variáveis
+int8 contador1 = 250, contador2 = 4;
+
+// Constantes
+// Interrupção por TIMER0
+#int_TIMER0
+
+
+void  TIMER0_isr(void){
+   set_timer0 (get_timer0 () + 6) ;
+   contador1--;
+   if(!contador1){
+      contador1 = 250;
+      fim_tempo1 = 1;
+      contador2--;
+      if(!contador2){
+         
+         contador2 = 4;
+         fim_tempo2 = 1;
+         
+      }
+   }
+}
+
+void main(){
+   setup_adc_ports (AN0_AN1_AN3);
+   setup_adc (ADC_CLOCK_INTERNAL);
+   setup_timer_0 (RTCC_INTERNAL|RTCC_DIV_4|RTCC_8_BIT); //1, 0 ms overflow
+   setup_timer_1 (T1_EXTERNAL|T1_DIV_BY_1); //65, 5 ms overflow
+   setup_timer_2 (T2_DIV_BY_1, 199, 1); //200 us overflow, 200 us interrupt
+   setup_ccp1 (CCP_PWM);
+   setup_ccp2 (CCP_PWM);
+   set_pwm1_duty ( (int16) 0) ;
+   set_pwm2_duty ( (int16) 0) ;
+   enable_interrupts (int_TIMER0);
+   enable_interrupts (GLOBAL);
+
+   while (TRUE){
+      //TODO: User Code
+   }
+}
+

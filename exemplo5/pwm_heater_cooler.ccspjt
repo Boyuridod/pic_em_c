@@ -1,0 +1,57 @@
+[PROJECT]
+Target=pwm_heater_cooler.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=pwm_heater_cooler.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\exemplo5\pwm_heater_cooler]
+Type=4
+[mru-list]
+1=pwm_heater_cooler.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=24-05-2024
+D1_L=12
+D1_L1=[38976]Project Opened.
+D1_L2=[38985]Started Editing.
+D1_L3=[40587]Stopped Editing.
+D1_L4=[40691]Started Editing.
+D1_L5=[41020]Stopped Editing.
+D1_L6=[41097]Started Editing.
+D1_L7=[41633]Stopped Editing.
+D1_L8=[41713]Started Editing.
+D1_L9=[42945]Stopped Editing.
+D1_L10=[43274]Started Editing.
+D1_L11=[43574]Stopped Editing.
+TotalEdit=42
+TotalDebug=0
+D1_E=42
+D1_D=0
+D1_L12=[50618]Project Closed.
+D2=29-05-2024
+D2_L=2
+D2_L1=[37455]Project Opened.
+D2_L2=[37474]Project Closed.
+
+[Opened Files]
+1=pwm_heater_cooler.c
+t1=1
+2=pwm_heater_cooler.h
+t2=1
+Count=2
+[pwm_heater_cooler.c]
+Type=4
+
+[defines]
+buildcount=12
+[Units]
+Count=1
+1=pwm_heater_cooler (main)
