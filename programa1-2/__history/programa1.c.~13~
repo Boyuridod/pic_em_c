@@ -1,0 +1,32 @@
+#include <programa1.h>
+
+int16 cont = 0;
+
+#INT_TIMER0
+void  TIMER0_isr(VOID) {
+
+}
+
+void main(){
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   WHILE(TRUE){
+      if(!input(BTN_INICIAR)){
+      
+         output_high(DISPLAY1);      
+         output_d(cont);
+         
+      }
+      
+      else if(!input(BTN_PARAR)){
+      
+      
+      }
+      
+      else if(!input(BTN_ZERAR)){
+      
+      
+      }
+   }
+}

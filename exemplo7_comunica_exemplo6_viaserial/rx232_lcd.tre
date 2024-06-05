@@ -1,0 +1,29 @@
+ÀÄrx232_lcd
+   ÃÄMAIN  0/83  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄlcd_init  0/31  Ram=0
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄoutput  0/52  Ram=2
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ³  ÃÄlcd_write_cmd  0/30  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@delay_ms1  0/21  Ram=1
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄlcd_write_cmd  0/30  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄ@PSTRINGR_644  0/50  Ram=2
+   ³  ³  ÀÄlcd_write_dat  (Inline)  Ram=1
+   ³  ³     ÀÄoutput  0/52  Ram=2
+   ³  ÃÄlcd_gotoxy  0/16  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÀÄ@PSTRINGR_644  0/50  Ram=2
+   ³     ÀÄ*
+   ÃÄRDA_isr  0/77  Ram=2
+   ³  ÀÄ@MUL88  (Inline)  Ram=2
+   ÀÄTIMER0_isr  0/4  Ram=0

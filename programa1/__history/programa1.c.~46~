@@ -1,0 +1,42 @@
+#include <programa1.h>
+#include <lcd.c>
+int1 step = 0;
+float count = 0;
+int8 i = 0;
+int8 num = 0;
+
+
+
+#INT_TIMER0
+
+void  TIMER0_isr(VOID) {
+
+   if(i == 1){
+      port_d_pullup(0x0A);
+   }
+   if(num == 0){
+         output_low(LED11);
+         output_high(LED8);
+   }else if(num == 1){
+         output_low(LED8);
+         output_high(LED9);
+   }else if(num == 2){
+         output_low(LED9);
+         output_high(LED10);
+   }else if(num == 3){
+         output_low(LED10);
+         output_high(LED11);
+   }
+   num+=1;
+   if(num == 4){
+      num = 0;
+   }
+}
+void main(){
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   WHILE(TRUE){
+         
+   }
+}

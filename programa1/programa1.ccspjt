@@ -1,0 +1,63 @@
+[PROJECT]
+Target=programa1.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=programa1.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\programa1\programa1]
+Type=4
+[mru-list]
+1=programa1.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=29-05-2024
+D1_L=12
+D1_L1=[54277]Project Opened.
+D1_L2=[54322]Started Editing.
+D1_L3=[54622]Stopped Editing.
+D1_L4=[54704]Started Editing.
+D1_L5=[56037]Stopped Editing.
+D1_L6=[56155]Started Editing.
+D1_L7=[56887]Stopped Editing.
+D1_L8=[57293]Started Editing.
+D1_L9=[62436]Stopped Editing.
+D1_L10=[76635]Started Editing.
+D1_L11=[76636]Stopped Editing.
+TotalEdit=106
+TotalDebug=0
+D1_E=106
+D1_D=0
+D1_L12=[76636]Project Closed.
+D2=01-06-2024
+D2_L=2
+D2_L1=[38324]Project Opened.
+D2_L2=[38382]Project Closed.
+
+[Opened Files]
+1=programa1.c
+t1=21
+2=programa1.h
+t2=2
+Count=5
+3=..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Drivers\lcd.c
+t3=237
+4=..\exemplo4\LCD_APRENDENDO.c
+t4=1
+5=..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\examples\ex_patg.c
+t5=72
+[programa1.c]
+Type=4
+
+[defines]
+buildcount=44
+[Units]
+Count=1
+1=programa1 (main)

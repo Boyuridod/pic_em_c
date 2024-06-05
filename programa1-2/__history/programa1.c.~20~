@@ -1,0 +1,43 @@
+#include <programa1.h>
+
+int8 aux = 0, centena = 0, dezena = 0, unidade = 0, decimal = 0;
+int8 conversao[10] = {63,6};
+int16 contador = 6;
+
+#INT_TIMER0
+void  TIMER0_isr(VOID) {
+
+}
+
+void main(){
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   WHILE(TRUE){
+      if(!input(BTN_INICIAR)){
+      
+         output_high(DISPLAY1);      
+         output_d(63);
+         
+      }
+      
+      else if(!input(BTN_PARAR)){
+      
+      
+      }
+      
+      else if(!input(BTN_ZERAR)){
+      
+      
+      }
+   }
+}
+
+void extrai_numero(int16 num){
+
+   centena = (int)(num % 1000);
+   dezena = (int)((num - centena) % 100);
+   unidade = (int)((num - centena - dezena) % 10);
+   decimal = (int)(num - centena - dezena - unidade);
+
+}

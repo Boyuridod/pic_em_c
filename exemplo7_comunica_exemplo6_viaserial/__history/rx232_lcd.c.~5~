@@ -1,0 +1,37 @@
+#include <rx232_lcd.h>
+#include <lcd_8bits.c>
+
+char rx_pacote[
+
+#INT_RDA
+void  RDA_isr(void) 
+{
+
+}
+
+#INT_TIMER0
+void  TIMER0_isr(void) 
+{
+
+}
+
+void main()
+{
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_16|RTCC_8_BIT);      //4,0 ms overflow
+   setup_timer_2(T2_DIV_BY_1,199,1);      //200 us overflow, 200 us interrupt
+
+   setup_ccp1(CCP_PWM);
+   set_pwm1_duty((int16)0);
+
+   enable_interrupts(INT_RDA);
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}

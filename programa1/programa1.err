@@ -1,0 +1,7 @@
+Compiling D:\projetos_pic\pic_em_c\programa1\programa1 on 29-mai-24 at 17:16
+>>> Warning 204 "programa1.c" Line 34(1,1): Condition always FALSE
+>>> Warning 202 "programa1.c" Line 3(6,10): Variable never used:   step
+>>> Warning 202 "programa1.c" Line 4(7,12): Variable never used:   count
+      Memory usage:   ROM=3%      RAM=5% - 5%
+      0 Errors,  3 Warnings.
+Build Successful.

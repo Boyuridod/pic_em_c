@@ -19,7 +19,7 @@ forcecoff=0
 [ProjectLog]
 Days=1
 D1=29-05-2024
-D1_L=6
+D1_L=8
 D1_L1=[38182]Project Opened.
 D1_L2=[38261]Started Editing.
 D1_L3=[39412]Stopped Editing.
@@ -30,6 +30,8 @@ TotalDebug=0
 D1_E=15
 D1_D=0
 D1_L6=[45932]Project Closed.
+D1_L7=[53047]Project Opened.
+D1_L8=[53054]Project Closed.
 
 [Opened Files]
 1=TXrs232.c

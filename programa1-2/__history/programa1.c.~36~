@@ -1,0 +1,88 @@
+#include <programa1.h>
+
+int8 centena = 0, dezena = 0, unidade = 0, decimal = 0, ligado = 0;
+int8 conversao[10] = {63, 6, 91, 79, 102, 109, 125, 7, 127, 111};
+int16 contador = 0;
+
+#INT_TIMER0
+void  TIMER0_isr(VOID) {
+
+   extrai_numero(contador);
+
+   if(ligado == 0){
+
+      output_low(DISPLAY4);
+      output_high(DISPLAY1);      
+      output_d(decimal);
+
+   }
+
+   else if(ligado == 1){
+
+      output_low(DISPLAY1);
+      output_high(DISPLAY2);
+      output_high(PONTO);    
+      output_d(unidade);
+
+   }
+
+   else if(ligado == 2){
+
+      output_low(DISPLAY2);
+      output_high(DISPLAY3);      
+      output_d(dezena);
+
+   }
+
+   else if(ligado == 3){
+
+      output_low(DISPLAY3);
+      output_high(DISPLAY4);      
+      output_d(centena);
+
+   }
+   
+   ligado++;
+
+   contador++;
+
+   if(contador > 9999){
+   
+      contador = 0;
+   
+   }
+
+}
+
+void extrai_numero(int16 num){
+
+   centena = (int)(num % 1000);
+   dezena = (int)((num - centena) % 100);
+   unidade = (int)((num - centena - dezena) % 10);
+   decimal = (int)(num - centena - dezena - unidade);
+
+}
+
+void main(){
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   WHILE(TRUE){
+       
+      if(!input(BTN_INICIAR)){
+      
+         
+         
+      }
+      
+      else if(!input(BTN_PARAR)){
+      
+      
+      }
+      
+      else if(!input(BTN_ZERAR)){
+      
+      
+      }
+   }
+}

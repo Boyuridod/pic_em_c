@@ -1,0 +1,164 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @TRIS_C
+028.0   fim_rx
+029     x
+02A     y
+02B     rx_aux
+02C-035 rx_pacote
+036-037 @sprintf_string
+038     lcd_gotoxy.x
+038     @delay_ms1.P1
+038     @PSTRINGR_644.@SCRATCH1
+039     lcd_gotoxy.y
+039     @PSTRINGR_644.@SCRATCH2
+03A     lcd_gotoxy.address
+03A     lcd_write_dat.dat
+03B     lcd_gotoxy.@SCRATCH1
+03C     lcd_write_cmd.cmd
+03D     output.port
+03E     output.dat
+03F     @MUL88.P1
+03F     RDA_isr.@SCRATCH1
+040     @MUL88.P1
+040     RDA_isr.@SCRATCH2
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07F     @INTERRUPT_AREA
+09C.6   C1OUT
+09C.7   C2OUT
+0FF     @INTERRUPT_AREA
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+107F     @INTERRUPT_AREA
+10FF     @INTERRUPT_AREA
+117F     @INTERRUPT_AREA
+11FF     @INTERRUPT_AREA
+127F     @INTERRUPT_AREA
+12FF     @INTERRUPT_AREA
+137F     @INTERRUPT_AREA
+13FF     @INTERRUPT_AREA
+147F     @INTERRUPT_AREA
+14FF     @INTERRUPT_AREA
+157F     @INTERRUPT_AREA
+15FF     @INTERRUPT_AREA
+167F     @INTERRUPT_AREA
+16FF     @INTERRUPT_AREA
+177F     @INTERRUPT_AREA
+17FF     @INTERRUPT_AREA
+187F     @INTERRUPT_AREA
+18FF     @INTERRUPT_AREA
+197F     @INTERRUPT_AREA
+19FF     @INTERRUPT_AREA
+1A7F     @INTERRUPT_AREA
+1AFF     @INTERRUPT_AREA
+1B7F     @INTERRUPT_AREA
+1BFF     @INTERRUPT_AREA
+1C7F     @INTERRUPT_AREA
+1CFF     @INTERRUPT_AREA
+1D7F     @INTERRUPT_AREA
+1DFF     @INTERRUPT_AREA
+1E7F     @INTERRUPT_AREA
+1EFF     @INTERRUPT_AREA
+1F7F     @INTERRUPT_AREA
+1FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+000038  RDA_isr
+000055  @MUL88
+000085  TIMER0_isr
+000089  output
+0000BD  lcd_write_cmd
+0000DB  @delay_ms1
+0000F0  lcd_init
+00010F  lcd_gotoxy
+00011F  @PSTRINGR_644
+00012A  lcd_write_dat
+000151  @cinit1
+000151  MAIN
+00016A  @cinit2
+
+Project Directory:
+    D:\projetos_pic\pic_em_c\exemplo7_comunica_exemplo6_viaserial\
+
+Project Files:
+    rx232_lcd.c                                             [05-jun-24 10:08  CRC=1DE3CF2D]
+    rx232_lcd.h                                             [05-jun-24 09:42  CRC=70E8EC10]
+    ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F877A.h [15-jan-18 15:53  CRC=63418C39]
+    lcd_8bits.c                                             [22-mai-24 10:15  CRC=62A78AFE]
+
+Source signature=B75D5D72
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=60BF
+
+Units:
+    rx232_lcd (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   rx232_lcd.xsym
+    Errors:      rx232_lcd.err
+    Ext Symbols: rx232_lcd.esym
+    INHX8:       rx232_lcd.hex
+    Symbols:     rx232_lcd.sym
+    List:        rx232_lcd.lst
+    Debug/COFF:  rx232_lcd.cof
+    Project:     rx232_lcd.ccspjt
+    Call Tree:   rx232_lcd.tre
+    Statistics:  rx232_lcd.STA

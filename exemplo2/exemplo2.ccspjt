@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=1
+Days=2
 D1=17-05-2024
 D1_L=4
 D1_L1=[41348]Project Opened.
@@ -28,11 +28,17 @@ TotalDebug=0
 D1_E=2
 D1_D=0
 D1_L4=[42466]Project Closed.
+D2=01-06-2024
+D2_L=2
+D2_L1=[38754]Project Opened.
+D2_L2=[38859]Project Closed.
 
 [Opened Files]
 1=exemplo2.c
 t1=1
-Count=1
+Count=2
+2=..\exemplo3\ledcom1btn.c
+t2=1
 [exemplo2.c]
 Type=4
 [Units]
