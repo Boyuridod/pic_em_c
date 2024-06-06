@@ -1,0 +1,80 @@
+#include <controle_temperatura.h>
+#include <lcd_8bits.c>
+
+int1 sistema = 0;
+int16 temperatura_desejada = 450, temperatura_atual = 0, histerese = 10;
+
+#int_TIMER0
+void  TIMER0_isr(void){
+
+   
+
+}
+
+void main(){
+
+   setup_adc_ports(AN0_AN1_AN2_AN3_AN4);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(int_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   lcd_init();
+   lcd_gotoxy(1,1);
+   printf(lcd_write_dat, "Td %04Lu", temperatura_desejada);
+   
+   set_adc_channel(0);
+   delay_us(40);
+   
+   while(TRUE){
+   
+      temperatura_atual = read_adc();
+      lcd_gotoxy(10,1);
+      printf(lcd_write_dat, "Ta %04Lu", temperatura_atual);
+   
+      if(input(S1)){
+      
+         sistema = 1;
+         
+         lcd_gotoxy(1,2);
+         printf(lcd_write_dat, "Si ON");
+      
+      }
+      
+      if(sistema){
+      
+         if(temperatura_atual < (temperatura_desejada - histerese)){
+         
+            output_high(HEATER);
+            output_low(COOLER);
+            
+//!            lcd_gotoxy(1,2);
+//!            printf(lcd_write_dat, "Si ON");
+         
+         }
+         
+         else if(temperatura_atual > (temperatura_desejada + histerese)){
+         
+            output_low(HEATER);
+            output_high(COOLER);
+         
+         }
+         
+         if(input(S2)){
+      
+            sistema = 0;
+            
+            output_low(HEATER);
+            output_low(COOLER);
+            
+            lcd_gotoxy(1,2);
+            printf(lcd_write_dat, "Si OFF");
+         
+         }
+      
+      }
+      
+   }
+   
+}
+

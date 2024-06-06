@@ -1,9 +1,10 @@
-D G "__PCM__" 0 100 ""5.076""
-D G "__DEVICE__" 0 100 "877"
-D G "__DATE__" 0 100 ""04-jun-24""
-D G "__TIME__" 0 100 ""15:46:59""
-D G "_UNICODE" 0 100 ""?""
-D G "__EVAL" 0 100 ""?"" "Standard Header file for the PIC16F877A device ////////////////"
+F N "MAIN" 0 87 ""
+D G "__PCM__" 0 118 ""5.076""
+D G "__DEVICE__" 0 118 "877"
+D G "__DATE__" 0 118 ""05-jun-24""
+D G "__TIME__" 0 118 ""14:21:22""
+D G "_UNICODE" 0 118 ""?""
+D G "__EVAL" 0 118 ""?"" "Standard Header file for the PIC16F877A device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 37 ""
 v L "value" 2 37 "int8" `55 
@@ -1088,22 +1089,19 @@ D G "DISPLAY2" 1 16 "PIN_B5"
 D G "DISPLAY3" 1 17 "PIN_B6"
 D G "DISPLAY4" 1 18 "PIN_B7"
 D G "PONTO" 1 19 "PIN_D7"
-V G "centena" 0 3 "int8" `637 
-V G "dezena" 0 3 "int8" `638 
-V G "unidade" 0 3 "int8" `639 
-V G "decimal" 0 3 "int8" `640 
-V G "ligado" 0 3 "int8" `641 
-V G "tempo" 0 3 "int8" `642 
-V G "conversao" 0 4 "int8[10]" `643 
-V G "contador" 0 5 "int16" `644 
-F N "extrai_numero" 0 7 ""
-V L "num" 0 7 "int16" `646 
-F G "extrai_numero" 0 7 "void(int16 num)" `645 
-F N "TIMER0_isr" 0 17 ""
-F G "TIMER0_isr" 0 17 "void()" `656 
-F N "MAIN" 0 76 ""
-F G "MAIN" 0 76 "void()" `657 
-C L "MAIN" 0 77 1 "FUNCTION"
+V G "ligado" 0 3 "int1" `637 
+V G "qual_display" 0 4 "int8" `638 
+V G "tempo" 0 4 "int8" `639 
+V G "centena" 0 5 "int8" `640 
+V G "dezena" 0 5 "int8" `641 
+V G "unidade" 0 5 "int8" `642 
+V G "decimal" 0 5 "int8" `643 
+V G "conversao" 0 6 "int8[10]" `644 
+F N "TIMER0_isr" 0 9 ""
+F G "TIMER0_isr" 0 9 "void()" `645 
+F N "MAIN" 0 87 ""
+F G "MAIN" 0 87 "void()" `646 
+C L "MAIN" 0 88 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

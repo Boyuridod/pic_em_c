@@ -1,0 +1,53 @@
+[PROJECT]
+Target=controle_temperatura.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=controle_temperatura.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\programa3\controle_temperatura]
+Type=4
+[mru-list]
+1=controle_temperatura.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=06-06-2024
+D1_L=10
+D1_L1=[52099]Project Opened.
+D1_L2=[52150]Started Editing.
+D1_L3=[53741]Stopped Editing.
+D1_L4=[53953]Started Editing.
+D1_L5=[55828]Stopped Editing.
+D1_L6=[57983]Started Editing.
+D1_L7=[58341]Stopped Editing.
+D1_L8=[60462]Started Editing.
+D1_L9=[63095]Stopped Editing.
+D1_L10=[63198]Started Editing.
+
+[Opened Files]
+1=controle_temperatura.c
+t1=1
+2=controle_temperatura.h
+t2=1
+3=lcd_8bits.c
+t3=61
+Count=5
+4=..\exemplo5\pwm_heater_cooler.c
+t4=45
+5=..\exemplo5\pwm_heater_cooler.h
+t5=4
+[controle_temperatura.c]
+Type=4
+
+[defines]
+buildcount=32
+[Units]
+Count=1
+1=controle_temperatura (main)

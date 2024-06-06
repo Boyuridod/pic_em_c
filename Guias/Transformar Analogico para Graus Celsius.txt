@@ -1,0 +1,14 @@
+if(qual_ler == 0) {
+            
+            valor = read_adc();
+            
+            // Mostra a temperatura em graus
+            // Tem que fazer a conversão 341 = 27.5°C e 742 = 77.48°C
+            
+            conversao_temp = ((0.125 * valor) - 15.002) * 10;
+            
+            valor = (int16)(conversao_temp);
+            
+            isDecimal = 1;
+            
+         }

@@ -29,23 +29,23 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     31   7    0    179  1.4  lcd_init
 0     16   4    4    196  6.1  lcd_gotoxy
 0     77  18    2    293  4.1  RDA_isr
- Inline         2      5  1.0  @MUL88
+ Inline         2             @MUL88
 0      4   1    0      5  1.0  TIMER0_isr
 0     83  20    0    594  4.2  MAIN
 0     50  12    2             @PSTRINGR_644
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               9
+    Functions               8
     Statements              85
     Comments                165
-    Volume (V)              2921
-    Difficulty (D)          24.6
-    Effort to implement (E) 71750
-    Time to implement (T)   1 hours, 6 minutes
+    Volume (V)              2893
+    Difficulty (D)          23.5
+    Effort to implement (E) 67961
+    Time to implement (T)   1 hours, 3 minutes
     Est Delivered Bugs (B)  1
     Cyclomatic Complexity   11
-    Maintainability (MI)    121
+    Maintainability (MI)    136
 
  Segment     Used  Free
 -----------  ----  ----

@@ -1,14 +1,4 @@
 ÀÄprograma1
-   ÃÄMAIN  0/68  Ram=0
+   ÃÄMAIN  0/81  Ram=1
    ³  ÀÄ@cinit1  (Inline)  Ram=0
-   ÀÄTIMER0_isr  0/253  Ram=1
-      ÀÄextrai_numero  (Inline)  Ram=4
-         ÃÄ@DIV1616  0/37  Ram=5
-         ÃÄ@MUL1616  0/21  Ram=5
-         ÃÄ@DIV1616  0/37  Ram=5
-         ÃÄ@MUL1616  0/21  Ram=5
-         ÃÄ@MUL88  0/37  Ram=2
-         ÃÄ@DIV1616  0/37  Ram=5
-         ÃÄ@MUL1616  0/21  Ram=5
-         ÃÄ@MUL88  0/37  Ram=2
-         ÀÄ@MUL88  0/37  Ram=2
+   ÀÄTIMER0_isr  0/137  Ram=1

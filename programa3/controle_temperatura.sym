@@ -1,0 +1,185 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029     @INTERRUPT_AREA
+02A     @INTERRUPT_AREA
+02B     @TRIS_C
+02C.0   sistema
+02C.1   fim_250ms
+02D     tempo_250ms
+02E-02F temperatura_desejada
+030-031 temperatura_atual
+032-033 histerese
+034-035 @sprintf_string
+036     lcd_gotoxy.x
+036-037 @PRINTF_LU_643.P1
+036     @delay_ms1.P2
+036     @PSTRINGC7_643.@SCRATCH1
+037     lcd_gotoxy.y
+037     @PSTRINGC7_643.@SCRATCH2
+038     lcd_gotoxy.address
+038     @PRINTF_LU_643.@SCRATCH1
+038     @PSTRINGC7_643.@SCRATCH3
+039     lcd_gotoxy.@SCRATCH1
+039     @PRINTF_LU_643.@SCRATCH2
+039     @PSTRINGC7_643.@SCRATCH4
+03A     lcd_write_cmd.cmd
+03A     @PRINTF_LU_643.@SCRATCH3
+03B     @PRINTF_LU_643.@SCRATCH4
+03C     @PRINTF_LU_643.@SCRATCH5
+03D     @PRINTF_LU_643.@SCRATCH6
+03E     @PRINTF_LU_643.@SCRATCH7
+03F     lcd_write_dat.dat
+040     output.port
+041     output.dat
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07F     @INTERRUPT_AREA
+09C.6   C1OUT
+09C.7   C2OUT
+0FF     @INTERRUPT_AREA
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+107F     @INTERRUPT_AREA
+10FF     @INTERRUPT_AREA
+117F     @INTERRUPT_AREA
+11FF     @INTERRUPT_AREA
+127F     @INTERRUPT_AREA
+12FF     @INTERRUPT_AREA
+137F     @INTERRUPT_AREA
+13FF     @INTERRUPT_AREA
+147F     @INTERRUPT_AREA
+14FF     @INTERRUPT_AREA
+157F     @INTERRUPT_AREA
+15FF     @INTERRUPT_AREA
+167F     @INTERRUPT_AREA
+16FF     @INTERRUPT_AREA
+177F     @INTERRUPT_AREA
+17FF     @INTERRUPT_AREA
+187F     @INTERRUPT_AREA
+18FF     @INTERRUPT_AREA
+197F     @INTERRUPT_AREA
+19FF     @INTERRUPT_AREA
+1A7F     @INTERRUPT_AREA
+1AFF     @INTERRUPT_AREA
+1B7F     @INTERRUPT_AREA
+1BFF     @INTERRUPT_AREA
+1C7F     @INTERRUPT_AREA
+1CFF     @INTERRUPT_AREA
+1D7F     @INTERRUPT_AREA
+1DFF     @INTERRUPT_AREA
+1E7F     @INTERRUPT_AREA
+1EFF     @INTERRUPT_AREA
+1F7F     @INTERRUPT_AREA
+1FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+00004F  TIMER0_isr
+00005A  @const673.call
+00005D  @const678.call
+000060  @const679.call
+000063  @const681.call
+000066  @const682.call
+000069  @const683.call
+00006C  @const684.call
+00006F  @const685.call
+000072  @const686.call
+000075  @const687.call
+000078  @const688.call
+00007B  output
+0000AF  lcd_write_cmd
+0000CF  @delay_ms1
+0000E3  lcd_init
+000102  lcd_gotoxy
+000112  lcd_write_dat
+000132  @PRINTF_LU_643
+000195  @PSTRINGC7_643
+0001EB  @cinit1
+0001EB  MAIN
+000205  @cinit2
+
+Project Directory:
+    D:\projetos_pic\pic_em_c\programa3\
+
+Project Files:
+    controle_temperatura.c                                  [06-jun-24 17:35  CRC=6FD9169C]
+    controle_temperatura.h                                  [06-jun-24 16:51  CRC=DB2D90B1]
+    ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F877A.h [15-jan-18 15:53  CRC=63418C39]
+    lcd_8bits.c                                             [22-mai-24 10:15  CRC=62A78AFE]
+
+Source signature=73974982
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=E3E8
+
+Units:
+    controle_temperatura (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   controle_temperatura.xsym
+    Errors:      controle_temperatura.err
+    Ext Symbols: controle_temperatura.esym
+    INHX8:       controle_temperatura.hex
+    Symbols:     controle_temperatura.sym
+    List:        controle_temperatura.lst
+    Debug/COFF:  controle_temperatura.cof
+    Project:     controle_temperatura.ccspjt
+    Call Tree:   controle_temperatura.tre
+    Statistics:  controle_temperatura.STA

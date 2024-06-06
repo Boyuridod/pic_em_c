@@ -1,0 +1,46 @@
+#include <controle_temperatura.h>
+#include <lcd_8bits.c>
+
+int1 sistema = 0;
+int16 temperatura_desejada = 450;
+
+#int_TIMER0
+void  TIMER0_isr(void){
+
+   
+
+}
+
+void main(){
+
+   setup_adc_ports(AN0_AN1_AN2_AN3_AN4);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(int_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   lcd_init();
+   lcd_gotoxy(1,1);
+   printf(lcd_write_dat, "Tn %04Lu", temperatura_desejada);
+   
+   lcd_gotoxy(1,6);
+   printf(lcd_write_dat, "Tatual %04Lu", temperatura_desejada);
+
+   while(TRUE){
+   
+      if(sistema){
+      
+         
+      
+      }
+      
+      else{
+      
+      
+      
+      }
+      
+   }
+   
+}
+

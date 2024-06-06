@@ -1,0 +1,8 @@
+ÀÄprograma2ccspjt
+   ÃÄMAIN  0/161  Ram=1
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄconverte_valor  0/57  Ram=2
+   ³  ÃÄacende_display  0/99  Ram=1
+   ³  ÃÄconverte_valor  0/57  Ram=2
+   ³  ÀÄconverte_valor  0/57  Ram=2
+   ÀÄTIMER0_isr  0/31  Ram=0

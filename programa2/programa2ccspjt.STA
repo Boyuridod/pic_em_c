@@ -1,0 +1,52 @@
+
+ROM used:   395/8192 (5%)
+            395/8192 (5%) including unused fragments
+
+            0.5 Average locations per line
+            5.3 Average locations per statement
+
+RAM used:   35/368 (10%) at main() level
+            36/368 (10%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  155    75 100  programa2ccspjt.c
+   19     0   0  programa2ccspjt.h
+  684     0   0  ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F877A.h
+----- -----
+  858    75 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     31   8    0    186  3.1  TIMER0_isr
+0     57  14    2    290  3.7  converte_valor
+0     99  25    1    505  4.3  acende_display
+0    161  41    1    644  4.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              75
+    Comments                124
+    Volume (V)              2193
+    Difficulty (D)          15.8
+    Effort to implement (E) 34758
+    Time to implement (T)   32 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   9
+    Maintainability (MI)    126
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-0002E    43  0  
+0002F-007FF   348  1653  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

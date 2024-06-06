@@ -1,4 +1,4 @@
-#include <programa1.h>
+#include <controle_temperatura.h>
 
 #INT_TIMER0
 void  TIMER0_isr(void) 
@@ -8,6 +8,8 @@ void  TIMER0_isr(void)
 
 void main()
 {
+	setup_adc_ports(AN0_AN1_AN2_AN3_AN4);
+	setup_adc(ADC_CLOCK_INTERNAL);
 	setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);		//1,0 ms overflow
 
 

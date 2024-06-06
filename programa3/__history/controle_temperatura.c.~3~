@@ -1,0 +1,22 @@
+#include <controle_temperatura.h>
+#include <lcd_8bits.c>
+
+#int_TIMER0
+void  TIMER0_isr(void){
+
+   
+
+}
+
+void main(){
+   setup_adc_ports(AN0_AN1_AN2_AN3_AN4);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT); //1, 0 ms overflow
+   enable_interrupts(int_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE){
+      //TODO: User Code
+   }
+}
+

@@ -1,0 +1,600 @@
+CCS PCM C Compiler, Version 5.076, 56587               06-jun-24 14:20
+
+               Filename:   D:\projetos_pic\pic_em_c\programa2\programa2ccspjt.lst
+
+               ROM used:   395 words (5%)
+                           Largest free fragment is 2048
+               RAM used:   35 (10%) at main() level
+                           36 (10%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0EA
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  BCF    03.7
+0016:  BCF    03.5
+0017:  BTFSS  0B.5
+0018:  GOTO   01B
+0019:  BTFSC  0B.2
+001A:  GOTO   02C
+001B:  MOVF   22,W
+001C:  MOVWF  04
+001D:  MOVF   23,W
+001E:  MOVWF  77
+001F:  MOVF   24,W
+0020:  MOVWF  78
+0021:  MOVF   25,W
+0022:  MOVWF  79
+0023:  MOVF   26,W
+0024:  MOVWF  7A
+0025:  MOVF   20,W
+0026:  MOVWF  0A
+0027:  SWAPF  21,W
+0028:  MOVWF  03
+0029:  SWAPF  7F,F
+002A:  SWAPF  7F,W
+002B:  RETFIE
+002C:  BCF    0A.3
+002D:  BCF    0A.4
+002E:  GOTO   02F
+.................... #include <programa2ccspjt.h> 
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+....................  
+.................... #FUSES PUT                      //Power Up Timer 
+.................... #FUSES BROWNOUT                 //Reset when brownout detected 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOCPD                    //No EE protection 
+.................... #FUSES NOWRT                    //Program memory not write protected 
+.................... #FUSES NOPROTECT                //Code not protected from reading 
+....................  
+.................... #use delay(crystal=4MHz) 
+.................... #define SENS_TEMPERATURA   PIN_A0 
+.................... #define POTENCIOMETRO   PIN_A1 
+.................... #define DISPLAY1  PIN_B4 
+.................... #define DISPLAY2  PIN_B5 
+.................... #define DISPLAY3  PIN_B6 
+.................... #define DISPLAY4  PIN_B7 
+.................... #define PONTO PIN_D7 
+....................  
+....................  
+.................... int1 qual_ler = 1, fim_5s = 0, fim_500ms = 0; 
+.................... int8 qual_display = 0; 
+.................... int8 unidade = 0, dezena = 0, centena = 0, milhar = 0; 
+.................... int8 conversao[10] = {63, 6, 91, 79, 102, 109, 125, 7, 127, 111}; 
+*
+0103:  MOVLW  3F
+0104:  BCF    03.5
+0105:  MOVWF  2D
+0106:  MOVLW  06
+0107:  MOVWF  2E
+0108:  MOVLW  5B
+0109:  MOVWF  2F
+010A:  MOVLW  4F
+010B:  MOVWF  30
+010C:  MOVLW  66
+010D:  MOVWF  31
+010E:  MOVLW  6D
+010F:  MOVWF  32
+0110:  MOVLW  7D
+0111:  MOVWF  33
+0112:  MOVLW  07
+0113:  MOVWF  34
+0114:  MOVLW  7F
+0115:  MOVWF  35
+0116:  MOVLW  6F
+0117:  MOVWF  36
+.................... int16 valor = 0, tempo_5s = 0, tempo_500ms = 0; 
+....................  
+.................... #int_TIMER0 
+.................... void  TIMER0_isr(void) { 
+....................  
+....................    tempo_5s++; 
+*
+002F:  INCF   39,F
+0030:  BTFSC  03.2
+0031:  INCF   3A,F
+....................     
+....................    if(tempo_5s == 5000){ 
+0032:  MOVF   39,W
+0033:  SUBLW  88
+0034:  BTFSS  03.2
+0035:  GOTO   03D
+0036:  MOVF   3A,W
+0037:  SUBLW  13
+0038:  BTFSS  03.2
+0039:  GOTO   03D
+....................     
+....................       fim_5s = 1; 
+003A:  BSF    27.1
+....................       tempo_5s = 0; 
+003B:  CLRF   3A
+003C:  CLRF   39
+....................     
+....................    } 
+....................     
+....................    tempo_500ms++; 
+003D:  INCF   3B,F
+003E:  BTFSC  03.2
+003F:  INCF   3C,F
+....................     
+....................    if(tempo_500ms == 500){ 
+0040:  MOVF   3B,W
+0041:  SUBLW  F4
+0042:  BTFSS  03.2
+0043:  GOTO   049
+0044:  DECFSZ 3C,W
+0045:  GOTO   049
+....................     
+....................       fim_500ms = 1; 
+0046:  BSF    27.2
+....................       tempo_500ms = 0; 
+0047:  CLRF   3C
+0048:  CLRF   3B
+....................     
+....................    } 
+....................     
+....................    qual_display++; 
+0049:  INCF   28,F
+....................     
+004A:  BCF    0B.2
+004B:  BCF    0A.3
+004C:  BCF    0A.4
+004D:  GOTO   01B
+.................... } 
+....................  
+.................... void converte_valor(int16 num){ 
+....................  
+....................    milhar = centena = dezena = unidade = 0; 
+004E:  CLRF   29
+004F:  MOVF   29,W
+0050:  MOVWF  2A
+0051:  MOVWF  2B
+0052:  MOVWF  2C
+....................  
+....................    while(num >= 1000){ 
+0053:  MOVF   3E,W
+0054:  SUBLW  02
+0055:  BTFSC  03.0
+0056:  GOTO   066
+0057:  XORLW  FF
+0058:  BTFSS  03.2
+0059:  GOTO   05E
+005A:  MOVF   3D,W
+005B:  SUBLW  E7
+005C:  BTFSC  03.0
+005D:  GOTO   066
+....................        
+....................       num -= 1000; 
+005E:  MOVLW  E8
+005F:  SUBWF  3D,F
+0060:  MOVLW  03
+0061:  BTFSS  03.0
+0062:  MOVLW  04
+0063:  SUBWF  3E,F
+....................       milhar++; 
+0064:  INCF   2C,F
+0065:  GOTO   053
+....................        
+....................    } 
+....................     
+....................    while(num >= 100){ 
+0066:  MOVF   3E,F
+0067:  BTFSS  03.2
+0068:  GOTO   06D
+0069:  MOVF   3D,W
+006A:  SUBLW  63
+006B:  BTFSC  03.0
+006C:  GOTO   075
+....................        
+....................       num -= 100; 
+006D:  MOVLW  64
+006E:  SUBWF  3D,F
+006F:  MOVLW  00
+0070:  BTFSS  03.0
+0071:  MOVLW  01
+0072:  SUBWF  3E,F
+....................       centena++; 
+0073:  INCF   2B,F
+0074:  GOTO   066
+....................        
+....................    } 
+....................     
+....................    while(num >= 10){ 
+0075:  MOVF   3E,F
+0076:  BTFSS  03.2
+0077:  GOTO   07C
+0078:  MOVF   3D,W
+0079:  SUBLW  09
+007A:  BTFSC  03.0
+007B:  GOTO   084
+....................        
+....................       num -= 10; 
+007C:  MOVLW  0A
+007D:  SUBWF  3D,F
+007E:  MOVLW  00
+007F:  BTFSS  03.0
+0080:  MOVLW  01
+0081:  SUBWF  3E,F
+....................       dezena++; 
+0082:  INCF   2A,F
+0083:  GOTO   075
+....................        
+....................    } 
+....................     
+....................    unidade = num; 
+0084:  MOVF   3D,W
+0085:  MOVWF  29
+0086:  RETURN
+....................  
+.................... } 
+....................  
+.................... void acende_display(){ 
+....................  
+....................    if(qual_display == 0){ 
+0087:  MOVF   28,F
+0088:  BTFSS  03.2
+0089:  GOTO   09E
+....................  
+....................       output_low(DISPLAY4); 
+008A:  BSF    03.5
+008B:  BCF    06.7
+008C:  BCF    03.5
+008D:  BCF    06.7
+....................       output_high(DISPLAY1); 
+008E:  BSF    03.5
+008F:  BCF    06.4
+0090:  BCF    03.5
+0091:  BSF    06.4
+....................       output_d(conversao[unidade]); 
+0092:  MOVLW  2D
+0093:  ADDWF  29,W
+0094:  MOVWF  04
+0095:  BCF    03.7
+0096:  MOVF   00,W
+0097:  MOVWF  3D
+0098:  BSF    03.5
+0099:  CLRF   08
+009A:  BCF    03.5
+009B:  MOVF   3D,W
+009C:  MOVWF  08
+....................     
+....................    } 
+009D:  GOTO   0E7
+....................     
+....................    else if(qual_display == 2){ 
+009E:  MOVF   28,W
+009F:  SUBLW  02
+00A0:  BTFSS  03.2
+00A1:  GOTO   0B6
+....................     
+....................       output_low(DISPLAY1); 
+00A2:  BSF    03.5
+00A3:  BCF    06.4
+00A4:  BCF    03.5
+00A5:  BCF    06.4
+....................       output_high(DISPLAY2); 
+00A6:  BSF    03.5
+00A7:  BCF    06.5
+00A8:  BCF    03.5
+00A9:  BSF    06.5
+....................       output_d(conversao[dezena]); 
+00AA:  MOVLW  2D
+00AB:  ADDWF  2A,W
+00AC:  MOVWF  04
+00AD:  BCF    03.7
+00AE:  MOVF   00,W
+00AF:  MOVWF  3D
+00B0:  BSF    03.5
+00B1:  CLRF   08
+00B2:  BCF    03.5
+00B3:  MOVF   3D,W
+00B4:  MOVWF  08
+....................     
+....................    } 
+00B5:  GOTO   0E7
+....................     
+....................    else if(qual_display == 4){ 
+00B6:  MOVF   28,W
+00B7:  SUBLW  04
+00B8:  BTFSS  03.2
+00B9:  GOTO   0CE
+....................     
+....................       output_low(DISPLAY2); 
+00BA:  BSF    03.5
+00BB:  BCF    06.5
+00BC:  BCF    03.5
+00BD:  BCF    06.5
+....................       output_high(DISPLAY3); 
+00BE:  BSF    03.5
+00BF:  BCF    06.6
+00C0:  BCF    03.5
+00C1:  BSF    06.6
+....................       output_d(conversao[centena]); 
+00C2:  MOVLW  2D
+00C3:  ADDWF  2B,W
+00C4:  MOVWF  04
+00C5:  BCF    03.7
+00C6:  MOVF   00,W
+00C7:  MOVWF  3D
+00C8:  BSF    03.5
+00C9:  CLRF   08
+00CA:  BCF    03.5
+00CB:  MOVF   3D,W
+00CC:  MOVWF  08
+....................     
+....................    } 
+00CD:  GOTO   0E7
+....................     
+....................    else if(qual_display == 6){ 
+00CE:  MOVF   28,W
+00CF:  SUBLW  06
+00D0:  BTFSS  03.2
+00D1:  GOTO   0E7
+....................     
+....................       output_low(DISPLAY3); 
+00D2:  BSF    03.5
+00D3:  BCF    06.6
+00D4:  BCF    03.5
+00D5:  BCF    06.6
+....................       output_high(DISPLAY4); 
+00D6:  BSF    03.5
+00D7:  BCF    06.7
+00D8:  BCF    03.5
+00D9:  BSF    06.7
+....................       output_d(conversao[milhar]); 
+00DA:  MOVLW  2D
+00DB:  ADDWF  2C,W
+00DC:  MOVWF  04
+00DD:  BCF    03.7
+00DE:  MOVF   00,W
+00DF:  MOVWF  3D
+00E0:  BSF    03.5
+00E1:  CLRF   08
+00E2:  BCF    03.5
+00E3:  MOVF   3D,W
+00E4:  MOVWF  08
+....................        
+....................       qual_display = -1; 
+00E5:  MOVLW  FF
+00E6:  MOVWF  28
+....................     
+....................    } 
+00E7:  BCF    0A.3
+00E8:  BCF    0A.4
+00E9:  GOTO   147 (RETURN)
+....................  
+.................... } 
+....................  
+.................... void main(){ 
+00EA:  MOVF   03,W
+00EB:  ANDLW  1F
+00EC:  MOVWF  03
+00ED:  BSF    27.0
+00EE:  BCF    27.1
+00EF:  BCF    27.2
+00F0:  CLRF   28
+00F1:  CLRF   29
+00F2:  CLRF   2A
+00F3:  CLRF   2B
+00F4:  CLRF   2C
+00F5:  CLRF   38
+00F6:  CLRF   37
+00F7:  CLRF   3A
+00F8:  CLRF   39
+00F9:  CLRF   3C
+00FA:  CLRF   3B
+00FB:  BSF    03.5
+00FC:  BSF    1F.0
+00FD:  BSF    1F.1
+00FE:  BSF    1F.2
+00FF:  BCF    1F.3
+0100:  MOVLW  07
+0101:  MOVWF  1C
+0102:  BCF    03.7
+....................    setup_adc_ports(AN0_AN1_AN2_AN3_AN4); 
+*
+0118:  BSF    03.5
+0119:  BCF    1F.0
+011A:  BSF    1F.1
+011B:  BCF    1F.2
+011C:  BCF    1F.3
+....................    setup_adc(ADC_CLOCK_INTERNAL); 
+011D:  BCF    1F.6
+011E:  BCF    03.5
+011F:  BSF    1F.6
+0120:  BSF    1F.7
+0121:  BSF    03.5
+0122:  BSF    1F.7
+0123:  BCF    03.5
+0124:  BSF    1F.0
+....................    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_4|RTCC_8_BIT);//1, 0 ms overflow 
+0125:  BSF    03.5
+0126:  MOVF   01,W
+0127:  ANDLW  C0
+0128:  IORLW  01
+0129:  MOVWF  01
+....................    enable_interrupts(int_TIMER0); 
+012A:  BCF    03.5
+012B:  BSF    0B.5
+....................    enable_interrupts(GLOBAL); 
+012C:  MOVLW  C0
+012D:  IORWF  0B,F
+....................     
+....................    set_adc_channel(1); 
+012E:  MOVLW  08
+012F:  MOVWF  78
+0130:  MOVF   1F,W
+0131:  ANDLW  C7
+0132:  IORWF  78,W
+0133:  MOVWF  1F
+....................    delay_us(40); 
+0134:  MOVLW  0D
+0135:  MOVWF  77
+0136:  DECFSZ 77,F
+0137:  GOTO   136
+....................    valor = read_adc(); 
+0138:  BSF    1F.2
+0139:  BTFSC  1F.2
+013A:  GOTO   139
+013B:  BSF    03.5
+013C:  MOVF   1E,W
+013D:  BCF    03.5
+013E:  MOVWF  37
+013F:  MOVF   1E,W
+0140:  MOVWF  38
+....................    converte_valor(valor); 
+0141:  MOVF   38,W
+0142:  MOVWF  3E
+0143:  MOVF   37,W
+0144:  MOVWF  3D
+0145:  CALL   04E
+....................     
+....................    while(TRUE){ 
+....................     
+....................    acende_display(); 
+0146:  GOTO   087
+....................        
+....................       if(fim_5s) { 
+0147:  BTFSS  27.1
+0148:  GOTO   16C
+....................           
+....................          qual_ler = !qual_ler; 
+0149:  MOVLW  01
+014A:  XORWF  27,F
+....................           
+....................          set_adc_channel(qual_ler); 
+014B:  MOVLW  00
+014C:  BTFSC  27.0
+014D:  MOVLW  01
+014E:  MOVWF  3D
+014F:  RLF    3D,W
+0150:  MOVWF  77
+0151:  RLF    77,F
+0152:  RLF    77,F
+0153:  MOVLW  F8
+0154:  ANDWF  77,F
+0155:  MOVF   1F,W
+0156:  ANDLW  C7
+0157:  IORWF  77,W
+0158:  MOVWF  1F
+....................          delay_us(40); 
+0159:  MOVLW  0D
+015A:  MOVWF  77
+015B:  DECFSZ 77,F
+015C:  GOTO   15B
+....................          valor = read_adc(); 
+015D:  BSF    1F.2
+015E:  BTFSC  1F.2
+015F:  GOTO   15E
+0160:  BSF    03.5
+0161:  MOVF   1E,W
+0162:  BCF    03.5
+0163:  MOVWF  37
+0164:  MOVF   1E,W
+0165:  MOVWF  38
+....................           
+....................          converte_valor(valor); 
+0166:  MOVF   38,W
+0167:  MOVWF  3E
+0168:  MOVF   37,W
+0169:  MOVWF  3D
+016A:  CALL   04E
+....................           
+....................          fim_5s = 0; 
+016B:  BCF    27.1
+....................           
+....................       } 
+....................  
+....................       if(fim_500ms) { 
+016C:  BTFSS  27.2
+016D:  GOTO   189
+....................           
+....................          if(qual_ler == 0) { 
+016E:  BTFSC  27.0
+016F:  GOTO   17A
+....................              
+....................             valor = read_adc(); 
+0170:  BSF    1F.2
+0171:  BTFSC  1F.2
+0172:  GOTO   171
+0173:  BSF    03.5
+0174:  MOVF   1E,W
+0175:  BCF    03.5
+0176:  MOVWF  37
+0177:  MOVF   1E,W
+0178:  MOVWF  38
+....................              
+....................          } 
+0179:  GOTO   183
+....................  
+....................           
+....................          else{ 
+....................              
+....................             valor = read_adc(); 
+017A:  BSF    1F.2
+017B:  BTFSC  1F.2
+017C:  GOTO   17B
+017D:  BSF    03.5
+017E:  MOVF   1E,W
+017F:  BCF    03.5
+0180:  MOVWF  37
+0181:  MOVF   1E,W
+0182:  MOVWF  38
+....................              
+....................          } 
+....................           
+....................          converte_valor(valor); 
+0183:  MOVF   38,W
+0184:  MOVWF  3E
+0185:  MOVF   37,W
+0186:  MOVWF  3D
+0187:  CALL   04E
+....................           
+....................          fim_500ms = 0; 
+0188:  BCF    27.2
+....................           
+....................       } 
+0189:  GOTO   146
+....................    } 
+.................... } 
+....................  
+018A:  SLEEP
+.................... //TODO Tirar tudo q for possível da interrupção | Se n funcionar usa PWM 
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT
