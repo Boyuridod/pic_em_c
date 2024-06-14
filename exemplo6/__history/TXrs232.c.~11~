@@ -42,7 +42,6 @@ void main(){
    enable_interrupts(GLOBAL);
    
    lcd_init();
-   
    while(TRUE){
       if(fim_tempo1){
       

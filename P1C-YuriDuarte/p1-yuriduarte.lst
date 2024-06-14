@@ -1,0 +1,413 @@
+CCS PCM C Compiler, Version 5.076, 56587               12-jun-24 10:10
+
+               Filename:   D:\projetos_pic\pic_em_c\P1C-YuriDuarte\p1-yuriduarte.lst
+
+               ROM used:   254 words (12%)
+                           Largest free fragment is 1794
+               RAM used:   41 (18%) at main() level
+                           41 (18%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   042
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   7F,W
+0009:  MOVWF  20
+000A:  MOVF   0A,W
+000B:  MOVWF  27
+000C:  CLRF   0A
+000D:  SWAPF  20,F
+000E:  MOVF   04,W
+000F:  MOVWF  22
+0010:  MOVF   77,W
+0011:  MOVWF  23
+0012:  MOVF   78,W
+0013:  MOVWF  24
+0014:  MOVF   79,W
+0015:  MOVWF  25
+0016:  MOVF   7A,W
+0017:  MOVWF  26
+0018:  BCF    03.7
+0019:  BCF    03.5
+001A:  BTFSS  0B.5
+001B:  GOTO   01E
+001C:  BTFSC  0B.2
+001D:  GOTO   02F
+001E:  MOVF   22,W
+001F:  MOVWF  04
+0020:  MOVF   23,W
+0021:  MOVWF  77
+0022:  MOVF   24,W
+0023:  MOVWF  78
+0024:  MOVF   25,W
+0025:  MOVWF  79
+0026:  MOVF   26,W
+0027:  MOVWF  7A
+0028:  MOVF   27,W
+0029:  MOVWF  0A
+002A:  SWAPF  21,W
+002B:  MOVWF  03
+002C:  SWAPF  7F,F
+002D:  SWAPF  7F,W
+002E:  RETFIE
+.................... #include <p1-yuriduarte.h> 
+.................... #include <16F628A.h> 
+.................... //////////// Standard Header file for the PIC16F628A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES PUT                   	//Power Up Timer 
+.................... #FUSES MCLR                  	//Master Clear pin enabled 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOCPD                 	//No EE protection 
+.................... #FUSES NOPROTECT             	//Code not protected from reading 
+....................  
+.................... #use delay(crystal=8MHz) 
+.................... #use FIXED_IO( A_outputs=PIN_A0 ) 
+.................... #define LED	PIN_A0 
+.................... #define BTN_LIGA	PIN_A1 
+.................... #define BTN_DESLIGA	PIN_A2 
+.................... #define BTN_MAIS	PIN_A3 
+.................... #define BTN_MENOS	PIN_A4 
+....................  
+....................  
+....................  
+....................  
+.................... int1 fim_tempo = 0, isLigado = 0; 
+.................... int8 filtro = 0; 
+.................... int8 cod_frequencia = 0, frequencia[11] = {500, 250, 200, 150, 120, 100, 80, 60, 50, 40}; 
+*
+0050:  MOVLW  F4
+0051:  MOVWF  2B
+0052:  MOVLW  FA
+0053:  MOVWF  2C
+0054:  MOVLW  C8
+0055:  MOVWF  2D
+0056:  MOVLW  96
+0057:  MOVWF  2E
+0058:  MOVLW  78
+0059:  MOVWF  2F
+005A:  MOVLW  64
+005B:  MOVWF  30
+005C:  MOVLW  50
+005D:  MOVWF  31
+005E:  MOVLW  3C
+005F:  MOVWF  32
+0060:  MOVLW  32
+0061:  MOVWF  33
+0062:  MOVLW  28
+0063:  MOVWF  34
+0064:  CLRF   35
+.................... int8 conversao[11] = {254, 56, 221 ,125, 59, 119, 247, 60, 255, 127}; 
+0065:  MOVLW  FE
+0066:  MOVWF  36
+0067:  MOVLW  38
+0068:  MOVWF  37
+0069:  MOVLW  DD
+006A:  MOVWF  38
+006B:  MOVLW  7D
+006C:  MOVWF  39
+006D:  MOVLW  3B
+006E:  MOVWF  3A
+006F:  MOVLW  77
+0070:  MOVWF  3B
+0071:  MOVLW  F7
+0072:  MOVWF  3C
+0073:  MOVLW  3C
+0074:  MOVWF  3D
+0075:  MOVLW  FF
+0076:  MOVWF  3E
+0077:  MOVLW  7F
+0078:  MOVWF  3F
+0079:  CLRF   40
+.................... int16 tempo = 500; 
+....................  
+.................... #INT_TIMER0 
+.................... void  TIMER0_isr(void){ 
+....................     
+....................    tempo--; 
+*
+002F:  MOVF   41,W
+0030:  BTFSC  03.2
+0031:  DECF   42,F
+0032:  DECFSZ 41,F
+....................     
+....................    if(tempo == 0){ 
+0033:  GOTO   03F
+0034:  MOVF   42,F
+0035:  BTFSS  03.2
+0036:  GOTO   03F
+....................     
+....................       tempo = frequencia[cod_frequencia]; 
+0037:  MOVLW  2B
+0038:  ADDWF  2A,W
+0039:  MOVWF  04
+003A:  BCF    03.7
+003B:  CLRF   42
+003C:  MOVF   00,W
+003D:  MOVWF  41
+....................        
+....................       fim_tempo = 1; 
+003E:  BSF    28.0
+....................     
+....................    } 
+....................     
+003F:  BCF    0B.2
+0040:  BCF    0A.3
+0041:  GOTO   01E
+.................... } 
+....................  
+.................... void main(){ 
+0042:  MOVF   03,W
+0043:  ANDLW  1F
+0044:  MOVWF  03
+0045:  BCF    28.0
+0046:  BCF    28.1
+0047:  CLRF   29
+0048:  CLRF   2A
+0049:  MOVLW  01
+004A:  MOVWF  42
+004B:  MOVLW  F4
+004C:  MOVWF  41
+004D:  MOVLW  07
+004E:  MOVWF  1F
+004F:  BCF    03.7
+....................    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow 
+*
+007A:  BSF    03.5
+007B:  MOVF   01,W
+007C:  ANDLW  C0
+007D:  IORLW  02
+007E:  MOVWF  01
+....................  
+....................    enable_interrupts(INT_TIMER0); 
+007F:  BCF    03.5
+0080:  BSF    0B.5
+....................    enable_interrupts(GLOBAL); 
+0081:  MOVLW  C0
+0082:  IORWF  0B,F
+....................     
+....................    output_b(conversao[cod_frequencia]); 
+0083:  MOVLW  36
+0084:  ADDWF  2A,W
+0085:  MOVWF  04
+0086:  BCF    03.7
+0087:  MOVF   00,W
+0088:  MOVWF  43
+0089:  BSF    03.5
+008A:  CLRF   06
+008B:  BCF    03.5
+008C:  MOVF   43,W
+008D:  MOVWF  06
+....................    output_low(LED); 
+008E:  MOVLW  FE
+008F:  BSF    03.5
+0090:  MOVWF  05
+0091:  BCF    03.5
+0092:  BCF    05.0
+....................  
+....................    while(TRUE){ 
+....................  
+....................       if(isLigado == 1){ 
+0093:  BTFSS  28.1
+0094:  GOTO   0AB
+....................        
+....................          if(fim_tempo){ 
+0095:  BTFSS  28.0
+0096:  GOTO   09E
+....................           
+....................             output_toggle(LED); 
+0097:  MOVLW  FE
+0098:  BSF    03.5
+0099:  MOVWF  05
+009A:  MOVLW  01
+009B:  BCF    03.5
+009C:  XORWF  05,F
+....................              
+....................             fim_tempo = 0; 
+009D:  BCF    28.0
+....................           
+....................          } 
+....................           
+....................          if(!input(BTN_DESLIGA)){ 
+009E:  MOVLW  FE
+009F:  BSF    03.5
+00A0:  MOVWF  05
+00A1:  BCF    03.5
+00A2:  BTFSC  05.2
+00A3:  GOTO   0AA
+....................        
+....................             isLigado = 0; 
+00A4:  BCF    28.1
+....................              
+....................             output_low(LED); 
+00A5:  MOVLW  FE
+00A6:  BSF    03.5
+00A7:  MOVWF  05
+00A8:  BCF    03.5
+00A9:  BCF    05.0
+....................           
+....................          } 
+....................        
+....................       } 
+00AA:  GOTO   0FC
+....................        
+....................       else{ 
+....................        
+....................          if(!input(BTN_LIGA)){ 
+00AB:  MOVLW  FE
+00AC:  BSF    03.5
+00AD:  MOVWF  05
+00AE:  BCF    03.5
+00AF:  BTFSC  05.1
+00B0:  GOTO   0B7
+....................        
+....................             isLigado = 1; 
+00B1:  BSF    28.1
+....................              
+....................             output_high(LED); 
+00B2:  MOVLW  FE
+00B3:  BSF    03.5
+00B4:  MOVWF  05
+00B5:  BCF    03.5
+00B6:  BSF    05.0
+....................           
+....................          } 
+....................        
+....................          if(!input(BTN_MAIS)){ 
+00B7:  MOVLW  FE
+00B8:  BSF    03.5
+00B9:  MOVWF  05
+00BA:  BCF    03.5
+00BB:  BTFSC  05.3
+00BC:  GOTO   0DA
+....................           
+....................             for(filtro = 0; filtro <= 100; filtro++){ 
+00BD:  CLRF   29
+00BE:  MOVF   29,W
+00BF:  SUBLW  64
+00C0:  BTFSS  03.0
+00C1:  GOTO   0CA
+....................              
+....................                if(!input(BTN_MAIS)) 
+00C2:  MOVLW  FE
+00C3:  BSF    03.5
+00C4:  MOVWF  05
+00C5:  BCF    03.5
+00C6:  BTFSS  05.3
+....................                   filtro = 0; 
+00C7:  CLRF   29
+00C8:  INCF   29,F
+00C9:  GOTO   0BE
+....................              
+....................             } 
+....................           
+....................             if(cod_frequencia < 9){ 
+00CA:  MOVF   2A,W
+00CB:  SUBLW  08
+00CC:  BTFSS  03.0
+00CD:  GOTO   0DA
+....................              
+....................                cod_frequencia++; 
+00CE:  INCF   2A,F
+....................                 
+....................                output_b(conversao[cod_frequencia]); 
+00CF:  MOVLW  36
+00D0:  ADDWF  2A,W
+00D1:  MOVWF  04
+00D2:  BCF    03.7
+00D3:  MOVF   00,W
+00D4:  MOVWF  43
+00D5:  BSF    03.5
+00D6:  CLRF   06
+00D7:  BCF    03.5
+00D8:  MOVF   43,W
+00D9:  MOVWF  06
+....................              
+....................             } 
+....................           
+....................          } 
+....................           
+....................          if(!input(BTN_MENOS)){ 
+00DA:  MOVLW  FE
+00DB:  BSF    03.5
+00DC:  MOVWF  05
+00DD:  BCF    03.5
+00DE:  BTFSC  05.4
+00DF:  GOTO   0FC
+....................           
+....................             for(filtro = 0; filtro <= 100; filtro++){ 
+00E0:  CLRF   29
+00E1:  MOVF   29,W
+00E2:  SUBLW  64
+00E3:  BTFSS  03.0
+00E4:  GOTO   0ED
+....................              
+....................                if(!input(BTN_MENOS)) 
+00E5:  MOVLW  FE
+00E6:  BSF    03.5
+00E7:  MOVWF  05
+00E8:  BCF    03.5
+00E9:  BTFSS  05.4
+....................                   filtro = 0; 
+00EA:  CLRF   29
+00EB:  INCF   29,F
+00EC:  GOTO   0E1
+....................              
+....................             } 
+....................           
+....................             if(cod_frequencia > 0){ 
+00ED:  MOVF   2A,F
+00EE:  BTFSC  03.2
+00EF:  GOTO   0FC
+....................              
+....................                cod_frequencia--; 
+00F0:  DECF   2A,F
+....................                 
+....................                output_b(conversao[cod_frequencia]); 
+00F1:  MOVLW  36
+00F2:  ADDWF  2A,W
+00F3:  MOVWF  04
+00F4:  BCF    03.7
+00F5:  MOVF   00,W
+00F6:  MOVWF  43
+00F7:  BSF    03.5
+00F8:  CLRF   06
+00F9:  BCF    03.5
+00FA:  MOVF   43,W
+00FB:  MOVWF  06
+....................              
+....................             } 
+....................           
+....................          } 
+....................           
+....................       } 
+00FC:  GOTO   093
+....................        
+....................    } 
+....................  
+.................... } 
+00FD:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F22   NOWDT PUT HS MCLR NOBROWNOUT NOLVP NOCPD NOPROTECT

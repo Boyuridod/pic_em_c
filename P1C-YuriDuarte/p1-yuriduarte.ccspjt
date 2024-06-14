@@ -1,0 +1,55 @@
+[PROJECT]
+Target=p1-yuriduarte.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=p1-yuriduarte.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\P1C-YuriDuarte\p1-yuriduarte]
+Type=4
+[mru-list]
+1=p1-yuriduarte.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=12-06-2024
+D1_L=10
+D1_L1=[32603]Project Opened.
+D1_L2=[32617]Started Editing.
+D1_L3=[34638]Stopped Editing.
+TotalEdit=60
+TotalDebug=0
+D1_E=60
+D1_D=0
+D1_L4=[34793]Started Editing.
+D1_L5=[35600]Stopped Editing.
+D1_L6=[35630]Started Editing.
+D1_L7=[36634]Stopped Editing.
+D1_L8=[36634]Project Closed.
+D1_L9=[37385]Project Opened.
+D1_L10=[37457]Project Closed.
+D2=14-06-2024
+D2_L=2
+D2_L1=[38000]Project Opened.
+D2_L2=[38389]Project Closed.
+
+[Opened Files]
+1=p1-yuriduarte.c
+t1=45
+Count=2
+2=p1-yuriduarte.h
+t2=1
+[p1-yuriduarte.c]
+Type=4
+
+[defines]
+buildcount=30
+[Units]
+Count=1
+1=p1-yuriduarte (main)

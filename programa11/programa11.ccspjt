@@ -1,0 +1,101 @@
+[PROJECT]
+Target=programa11.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=programa11.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\programa11\programa11]
+Type=4
+[mru-list]
+1=programa11.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=3
+D1=11-06-2024
+D1_L=30
+D1_L1=[53437]Project Opened.
+D1_L2=[53490]Started Editing.
+D1_L3=[54172]Stopped Editing.
+D1_L4=[54898]Started Editing.
+D1_L5=[56371]Stopped Editing.
+D1_L6=[56407]Started Editing.
+D1_L7=[56743]Stopped Editing.
+D1_L8=[57024]Started Editing.
+D1_L9=[57407]Stopped Editing.
+D1_L10=[57618]Started Editing.
+D1_L11=[58687]Stopped Editing.
+D1_L12=[58731]Started Editing.
+D1_L13=[59407]Stopped Editing.
+D1_L14=[59574]Started Editing.
+D1_L15=[59996]Stopped Editing.
+D1_L16=[60475]Started Editing.
+D1_L17=[61161]Stopped Editing.
+D1_L18=[61201]Started Editing.
+D1_L19=[61704]Stopped Editing.
+D1_L20=[64356]Started Editing.
+D1_L21=[65200]Stopped Editing.
+D1_L22=[65366]Started Editing.
+D1_L23=[77264]Stopped Editing.
+D1_L24=[77832]Started Editing.
+D1_L25=[78437]Stopped Editing.
+TotalEdit=303
+TotalDebug=0
+D1_E=279
+D1_D=0
+D1_L26=[78437]Project Closed.
+D1_L27=[78500]Project Opened.
+D1_L28=[78863]Started Editing.
+D1_L29=[79235]Stopped Editing.
+D1_L30=[79235]Project Closed.
+D2=12-06-2024
+D2_L=12
+D2_L1=[31454]Project Opened.
+D2_L2=[32260]Project Closed.
+D2_L3=[37477]Project Opened.
+D2_L4=[37487]Started Editing.
+D2_L5=[37787]Stopped Editing.
+D2_L6=[37880]Started Editing.
+D2_L7=[38950]Stopped Editing.
+D2_L8=[39084]Started Editing.
+D2_L9=[39396]Stopped Editing.
+D2_L10=[39557]Started Editing.
+D2_L11=[40019]Stopped Editing.
+D2_E=21
+D2_D=0
+D2_L12=[40019]Project Closed.
+D3=14-06-2024
+D3_L=6
+D3_L1=[38405]Project Opened.
+D3_L2=[38488]Project Closed.
+D3_L3=[39693]Project Opened.
+D3_L4=[39761]Started Editing.
+D3_L5=[39915]Stopped Editing.
+D3_E=3
+D3_D=0
+D3_L6=[39915]Project Closed.
+
+[Opened Files]
+1=programa11.c
+t1=109
+2=programa11.h
+t2=1
+3=..\programa3\controle_temperatura.c
+t3=17
+Count=1
+4=..\programa3\controle_temperatura.h
+t4=1
+[programa11.c]
+Type=4
+
+[defines]
+buildcount=59
+[Units]
+Count=1
+1=programa11 (main)

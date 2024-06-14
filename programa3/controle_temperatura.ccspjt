@@ -17,9 +17,9 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=1
+Days=2
 D1=06-06-2024
-D1_L=10
+D1_L=14
 D1_L1=[52099]Project Opened.
 D1_L2=[52150]Started Editing.
 D1_L3=[53741]Stopped Editing.
@@ -30,6 +30,18 @@ D1_L7=[58341]Stopped Editing.
 D1_L8=[60462]Started Editing.
 D1_L9=[63095]Stopped Editing.
 D1_L10=[63198]Started Editing.
+D1_L11=[63670]Stopped Editing.
+D1_L12=[65918]Started Editing.
+D1_L13=[65921]Stopped Editing.
+TotalEdit=91
+TotalDebug=0
+D1_E=91
+D1_D=0
+D1_L14=[65921]Project Closed.
+D2=11-06-2024
+D2_L=2
+D2_L1=[47602]Project Opened.
+D2_L2=[47648]Project Closed.
 
 [Opened Files]
 1=controle_temperatura.c
