@@ -1,0 +1,130 @@
+#include <led_sequencial.h>
+#include <lcd_8bits.c>
+
+// Declaração de variáveis
+int1 fimfreq = 0, fim100ms = 0, sistema = 0;
+int8 i = 0, tempo100ms = 0;
+int16 valor_potenciometro = 0, frequencia = 0, modo = 1, tempo = 0;
+float analogico = 1.0 / 1023.0;
+
+// Espaço para interrupções
+#INT_TIMER0
+void  TIMER0_isr(void) {
+
+   tempo100ms++;
+   
+   if(tempo100ms == 100){
+      
+      fim100ms = 1;
+      tempo100ms = 0;
+   
+   }
+
+}
+
+void main() {
+   setup_adc_ports(AN0);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   set_adc_channel(0);
+   
+   lcd_init();
+   
+   lcd_gotoxy(1,1);
+   printf(lcd_write_dat, "Sist: OFF");
+   
+   lcd_gotoxy(11,1);
+   printf(lcd_write_dat, "M: %1LU",modo);
+   
+   valor_potenciometro = read_adc();
+   
+   frequencia = (int16)(valor_potenciometro * analogico * 10);
+   
+   lcd_gotoxy(1,2);
+   printf(lcd_write_dat, "F: %02LU", frequencia);
+   
+   lcd_gotoxy(8,2);
+   printf(lcd_write_dat, "Pot: %04LU", valor_potenciometro);
+
+   while(TRUE){
+   
+      if(fim100ms){
+      
+         fim100ms = 0;
+   
+         valor_potenciometro = read_adc();
+               
+         frequencia = (int16)(valor_potenciometro * analogico * 9) + 1;
+         
+         lcd_gotoxy(1,2);
+         printf(lcd_write_dat, "F: %02LU", frequencia);
+         
+         lcd_gotoxy(8,2);
+         printf(lcd_write_dat, "Pot: %04LU", valor_potenciometro);
+      
+      }
+   
+      // Leitura dos Botões
+//!      if(!input(BTN_LIGA)){
+//!      
+//!         for(i = 0; i < 100; i++){
+//!         
+//!            if(!input(BTN_LIGA))
+//!               i = 0;
+//!         
+//!         }
+//!         
+//!         if(sistema == 0){
+//!         
+//!            sistema = 1;
+//!         
+//!            lcd_gotoxy(1,1);
+//!            printf(lcd_write_dat, "Sist: ON!");
+//!         
+//!         }
+//!         
+//!         else{
+//!         
+//!            sistema = 0;
+//!         
+//!            lcd_gotoxy(1,1);
+//!            printf(lcd_write_dat, "Sist: OFF");
+//!         
+//!         }
+//!      
+//!      }
+      
+      if(!input(BTN_MUDA)){
+      
+         for(i = 0; i < 100; i++){
+         
+            if(!input(BTN_MUDA))
+               i = 0;
+         
+         }
+      
+         modo++;
+         
+         if(modo > 10)
+            modo = 0;
+            
+         lcd_gotoxy(11,1);
+         printf(lcd_write_dat, "M: %1LU",modo);
+      
+      }
+      
+      // Controle do Sistema
+      
+//!      if(sistema == 1){
+//!      
+//!         
+//!      
+//!      }
+
+   }
+
+}

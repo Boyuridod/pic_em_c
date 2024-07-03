@@ -1,0 +1,34 @@
+Compiling D:\projetos_pic\pic_em_c\P2C-YuriDuarte\led_sequencial on 03-jul-24 at 12:14
+*** Error 27 "led_sequencial.c" Line 9(18,19): Expression must evaluate to a constant
+*** Error 43 "led_sequencial.c" Line 9(19,20): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(20,21): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(21,22): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(23,24): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(24,25): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(26,27): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(27,28): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(29,31): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(31,32): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(33,35): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(35,36): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(37,39): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(39,40): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(41,44): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(44,45): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(46,49): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(49,50): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(51,54): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(54,55): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(56,59): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(59,60): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(61,64): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(64,65): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(66,69): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(69,70): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(71,74): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(74,75): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(76,79): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(79,80): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(81,84): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(84,85): Expecting a declaration
+*** Error 43 "led_sequencial.c" Line 9(85,86): Expecting a declaration

@@ -1,0 +1,44 @@
+#include <serialtank.h>
+
+#INT_TIMER0
+void  TIMER0_isr(void) 
+{
+
+}
+
+//! Definição de funções
+void valvula(int8 acao);
+
+void main()
+{
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE)
+   {
+      valvula(1);
+      
+      while(getc(0x00) == 0){
+      
+         
+      
+      }
+      
+      valvula(0);
+      
+//!      putc(
+
+   }
+
+}
+
+//! Funções
+
+void valvula(int8 acao){
+
+   putc(0x00);
+   putc(acao);
+
+}

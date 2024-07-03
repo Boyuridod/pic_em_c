@@ -1,0 +1,322 @@
+CCS PCM C Compiler, Version 5.076, 56587               02-jul-24 19:05
+
+               Filename:   D:\projetos_pic\pic_em_c\programa13\serialtank.lst
+
+               ROM used:   151 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   13 (4%) at main() level
+                           13 (4%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   04B
+0003:  NOP
+.................... #include <serialtank.h> 
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+....................  
+.................... #FUSES PUT                   	//Power Up Timer 
+.................... #FUSES BROWNOUT              	//Reset when brownout detected 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOCPD                 	//No EE protection 
+.................... #FUSES NOWRT                 	//Program memory not write protected 
+.................... #FUSES NOPROTECT             	//Code not protected from reading 
+....................  
+.................... #use delay(crystal=8MHz) 
+.................... #define BTN0	PIN_B0 
+.................... #define BTN1	PIN_B1 
+.................... #define BTN2	PIN_B2 
+.................... #define BTN3	PIN_B3 
+....................  
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8,stream=PORT1) 
+....................  
+....................  
+....................  
+.................... //! Declaração de variáveis 
+....................  
+.................... int1 teste = 0; 
+.................... int16 leitura = 0, setpoint = 25, histerese = 5; 
+....................  
+.................... //!#INT_TIMER0 
+.................... //!void  TIMER0_isr(void)  
+.................... //!{ 
+.................... //! 
+.................... //!} 
+....................  
+.................... //! Definição de funções 
+....................  
+.................... void setValvula(int8 acao); 
+.................... void setHeater(int8 acao); 
+.................... int1 isCheio(); 
+.................... int16 getTemperatura(); 
+.................... void setDespeja(int8 acao); 
+.................... int1 isVazio(); 
+....................  
+.................... void main() 
+*
+004B:  MOVF   03,W
+004C:  ANDLW  1F
+004D:  MOVWF  03
+004E:  MOVLW  0C
+004F:  BSF    03.5
+0050:  MOVWF  19
+0051:  MOVLW  A2
+0052:  MOVWF  18
+0053:  MOVLW  90
+0054:  BCF    03.5
+0055:  MOVWF  18
+0056:  BCF    20.0
+0057:  CLRF   22
+0058:  CLRF   21
+0059:  CLRF   24
+005A:  MOVLW  19
+005B:  MOVWF  23
+005C:  CLRF   26
+005D:  MOVLW  05
+005E:  MOVWF  25
+005F:  BSF    03.5
+0060:  BSF    1F.0
+0061:  BSF    1F.1
+0062:  BSF    1F.2
+0063:  BCF    1F.3
+0064:  MOVLW  07
+0065:  MOVWF  1C
+0066:  BCF    03.7
+.................... { 
+.................... //!   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow 
+....................  
+.................... //!   enable_interrupts(INT_TIMER0); 
+.................... //!   enable_interrupts(GLOBAL); 
+....................  
+....................    while(TRUE) 
+....................    { 
+.................... //!      if(!isCheio() e isVazio()){ 
+.................... //!          
+.................... //!      } 
+....................  
+....................       leitura = 0; 
+0067:  BCF    03.5
+0068:  CLRF   22
+0069:  CLRF   21
+....................       teste = 0; 
+006A:  BCF    20.0
+....................  
+....................       setValvula(1); 
+006B:  MOVLW  01
+006C:  MOVWF  27
+006D:  CALL   004
+....................        
+....................       do{ 
+....................        
+....................          teste = isCheio(); 
+006E:  GOTO   00D
+006F:  BCF    20.0
+0070:  BTFSC  78.0
+0071:  BSF    20.0
+....................        
+....................       } while(teste == 0); 
+0072:  BTFSS  20.0
+0073:  GOTO   06E
+....................        
+....................       setValvula(0); 
+0074:  CLRF   27
+0075:  CALL   004
+....................        
+....................       setHeater(1); 
+0076:  MOVLW  01
+0077:  MOVWF  27
+0078:  CALL   018
+....................        
+....................       do{ 
+....................        
+....................          leitura = getTemperatura(); 
+0079:  GOTO   021
+007A:  MOVF   79,W
+007B:  MOVWF  22
+007C:  MOVF   78,W
+007D:  MOVWF  21
+....................        
+....................       } while(leitura < setpoint); 
+007E:  MOVF   22,W
+007F:  SUBWF  24,W
+0080:  BTFSS  03.0
+0081:  GOTO   088
+0082:  BTFSS  03.2
+0083:  GOTO   079
+0084:  MOVF   23,W
+0085:  SUBWF  21,W
+0086:  BTFSS  03.0
+0087:  GOTO   079
+....................        
+....................       setHeater(0); 
+0088:  CLRF   27
+0089:  CALL   018
+....................        
+....................       setDespeja(1); 
+008A:  MOVLW  01
+008B:  MOVWF  27
+008C:  CALL   02F
+....................        
+....................       do{ 
+....................        
+....................          teste = isVazio(); 
+008D:  GOTO   038
+008E:  BCF    20.0
+008F:  BTFSC  78.0
+0090:  BSF    20.0
+....................           
+....................       } while(teste == 1); 
+0091:  BTFSC  20.0
+0092:  GOTO   08D
+....................        
+....................       setDespeja(0); 
+0093:  CLRF   27
+0094:  CALL   02F
+0095:  GOTO   068
+....................  
+....................    } 
+....................  
+.................... } 
+....................  
+0096:  SLEEP
+.................... //! Funções 
+....................  
+.................... void setValvula(int8 acao){ 
+....................  
+....................    putc(0x00); 
+*
+0004:  MOVLW  00
+0005:  BTFSS  0C.4
+0006:  GOTO   005
+0007:  MOVWF  19
+....................    putc(acao); 
+0008:  MOVF   27,W
+0009:  BTFSS  0C.4
+000A:  GOTO   009
+000B:  MOVWF  19
+000C:  RETURN
+....................  
+.................... } 
+....................  
+.................... void setHeater(int8 acao){ 
+....................  
+....................    putc(0x02); 
+*
+0018:  MOVLW  02
+0019:  BTFSS  0C.4
+001A:  GOTO   019
+001B:  MOVWF  19
+....................    putc(acao); 
+001C:  MOVF   27,W
+001D:  BTFSS  0C.4
+001E:  GOTO   01D
+001F:  MOVWF  19
+0020:  RETURN
+....................  
+.................... } 
+....................  
+.................... int1 isCheio(){ 
+....................  
+....................    putc(0x10); 
+*
+000D:  MOVLW  10
+000E:  BTFSS  0C.4
+000F:  GOTO   00E
+0010:  MOVWF  19
+....................    return getc(); 
+0011:  BTFSS  0C.5
+0012:  GOTO   011
+0013:  MOVF   1A,W
+0014:  MOVWF  78
+0015:  BCF    0A.3
+0016:  BCF    0A.4
+0017:  GOTO   06F (RETURN)
+....................  
+.................... } 
+....................  
+.................... int16 getTemperatura(){ 
+....................  
+....................    putc(0x31); 
+*
+0021:  MOVLW  31
+0022:  BTFSS  0C.4
+0023:  GOTO   022
+0024:  MOVWF  19
+....................    return getc(); 
+0025:  BTFSS  0C.5
+0026:  GOTO   025
+0027:  MOVF   1A,W
+0028:  CLRF   7A
+0029:  MOVWF  78
+002A:  MOVF   7A,W
+002B:  MOVWF  79
+002C:  BCF    0A.3
+002D:  BCF    0A.4
+002E:  GOTO   07A (RETURN)
+....................  
+.................... } 
+....................  
+.................... void setDespeja(int8 acao){ 
+....................  
+....................    putc(0x01); 
+002F:  MOVLW  01
+0030:  BTFSS  0C.4
+0031:  GOTO   030
+0032:  MOVWF  19
+....................    putc(acao); 
+0033:  MOVF   27,W
+0034:  BTFSS  0C.4
+0035:  GOTO   034
+0036:  MOVWF  19
+0037:  RETURN
+....................  
+.................... } 
+....................  
+.................... int1 isVazio(){ 
+....................  
+....................    putc(0x11); 
+0038:  MOVLW  11
+0039:  BTFSS  0C.4
+003A:  GOTO   039
+003B:  MOVWF  19
+....................    if(getc() == 1) 
+003C:  BTFSS  0C.5
+003D:  GOTO   03C
+003E:  MOVF   1A,W
+003F:  SUBLW  01
+0040:  BTFSS  03.2
+0041:  GOTO   046
+....................       return 0; 
+0042:  MOVLW  00
+0043:  MOVWF  78
+0044:  GOTO   048
+0045:  GOTO   048
+....................    else 
+....................       return 1; 
+0046:  MOVLW  01
+0047:  MOVWF  78
+0048:  BCF    0A.3
+0049:  BCF    0A.4
+004A:  GOTO   08E (RETURN)
+....................  
+.................... } 
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

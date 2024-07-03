@@ -1,0 +1,63 @@
+[PROJECT]
+Target=led_sequencial.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=led_sequencial.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\P2C-YuriDuarte\led_sequencial]
+Type=4
+[mru-list]
+1=led_sequencial.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=03-07-2024
+D1_L=18
+D1_L1=[33476]Project Opened.
+D1_L2=[33625]Started Editing.
+D1_L3=[35873]Stopped Editing.
+D1_L4=[35907]Started Editing.
+D1_L5=[36462]Stopped Editing.
+D1_L6=[36593]Started Editing.
+D1_L7=[37301]Stopped Editing.
+D1_L8=[37322]Started Editing.
+D1_L9=[38294]Stopped Editing.
+D1_L10=[38331]Started Editing.
+D1_L11=[38601]Stopped Editing.
+TotalEdit=143
+TotalDebug=0
+D1_E=143
+D1_D=0
+D1_L12=[38610]Started Editing.
+D1_L13=[43493]Stopped Editing.
+D1_L14=[43493]Project Closed.
+D1_L15=[43951]Project Opened.
+D1_L16=[44081]Started Editing.
+D1_L17=[44109]Stopped Editing.
+D1_L18=[44109]Project Closed.
+
+[Opened Files]
+1=led_sequencial.c
+t1=148
+2=led_sequencial.h
+t2=5
+3=lcd_8bits.c
+t3=33
+Count=4
+4=..\exemplo5\pwm_heater_cooler.c
+t4=53
+[led_sequencial.c]
+Type=4
+
+[defines]
+buildcount=64
+[Units]
+Count=1
+1=led_sequencial (main)

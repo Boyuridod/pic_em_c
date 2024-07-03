@@ -1,0 +1,214 @@
+#include <led_sequencial.h>
+#include <lcd_8bits.c>
+
+// Declaração de variáveis
+int1 fimfreq = 0, fim100ms = 0, sistema = 1;
+int8 i = 0, tempo100ms = 0, coluna = 0;
+int16 valor_potenciometro = 0, frequencia = 0, modo = 1, periodo = 0, tempo = 0;
+float analogico = 1.0 / 1023.0;
+int8 seq0[16] = {1, 3, 7, 15, 31, 63, 127, 255, 254, 252, 248, 240, 224, 192, 128};
+int8 seq1[9] = {1, 2, 4, 8, 16, 32, 64, 128};
+int8 seq2[8] = {129, 66, 36, 24, 24, 36, 66};
+int8 seq3[9] = {128, 64, 32, 16, 8, 4, 2, 1};
+int8 seq4[9] = {129, 3, 6, 12, 24, 48, 96, 192};
+
+// Espaço para interrupções
+#INT_TIMER0
+void  TIMER0_isr(void) {
+
+   tempo100ms++;
+   
+   if(tempo100ms >= 100){
+      
+      fim100ms = 1;
+      tempo100ms = 0;
+   
+   }
+   
+   tempo++;
+   
+   if(tempo >= periodo){
+   
+      tempo = 0;
+      fimfreq = 1;
+   
+   }
+
+}
+
+// Declaração de funções
+int8 muda_leds(int8 codigo);
+
+void main() {
+   setup_adc_ports(AN0);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   set_adc_channel(0);
+   
+   lcd_init();
+   
+   lcd_gotoxy(1,1);
+   printf(lcd_write_dat, "Sist: OFF");
+   
+   lcd_gotoxy(11,1);
+   printf(lcd_write_dat, "M: %02LU",modo);
+   
+   valor_potenciometro = read_adc();
+   
+   frequencia = (int16)(valor_potenciometro * analogico * 9) + 1;
+   
+   lcd_gotoxy(1,2);
+   printf(lcd_write_dat, "F: %02LU", frequencia);
+   
+   lcd_gotoxy(8,2);
+   printf(lcd_write_dat, "Pot: %04LU", valor_potenciometro);
+
+   while(TRUE){
+   
+      if(fim100ms){
+      
+         fim100ms = 0;
+   
+         valor_potenciometro = read_adc();
+               
+         frequencia = (int16)(valor_potenciometro * analogico * 9) + 1;
+         
+         periodo = (int16)((1.0 / frequencia) * 1000);
+         
+         if(sistema == 1){
+         
+            lcd_gotoxy(1,1);
+            printf(lcd_write_dat, "Sist: ON!");
+         
+         }
+         
+         else{
+         
+            lcd_gotoxy(1,1);
+            printf(lcd_write_dat, "Sist: OFF");
+         
+         }
+         
+         lcd_gotoxy(11,1);
+         printf(lcd_write_dat, "M: %02LU",modo);
+         
+         lcd_gotoxy(1,2);
+         printf(lcd_write_dat, "F: %02LU", frequencia);
+         
+         lcd_gotoxy(8,2);
+         printf(lcd_write_dat, "Pot: %04LU", valor_potenciometro);
+         
+      }
+         
+      // Leitura dos Botões
+      if(!input(BTN_LIGA)){
+      
+         for(i = 0; i < 50; i++){
+         
+            if(!input(BTN_LIGA))
+               i = 0;
+         
+         }
+         
+         if(sistema == 0){
+         
+            sistema = 1;
+         
+         }
+         
+         else{
+         
+            sistema = 0;
+         
+         }
+      
+      }
+      
+      if(!input(BTN_MUDA)){
+      
+         for(i = 0; i < 50; i++){
+         
+            if(!input(BTN_MUDA))
+               i = 0;
+         
+         }
+      
+         modo++;
+         
+         if(modo > 8)
+            modo = 0;
+      
+      }
+      
+      // Controle do Sistema
+      
+      if(sistema == 1){
+      
+         if(fimfreq == 1){
+         
+            fimfreq = 0;
+            
+            coluna++;
+            
+            output_b(muda_leds(modo - 1));
+         
+         }
+      
+      }
+
+   }
+
+}
+
+int8 muda_leds(int8 sequencia){
+
+   if(sequencia == 0){
+   
+      if(coluna > 14)
+         coluna = 0;
+         
+      return seq0[coluna];
+   
+   }
+   
+   else if(sequencia == 1){
+   
+      if(coluna > 8)
+         coluna = 0;
+         
+      return seq1[coluna];
+   
+   }
+   
+   else if(sequencia == 2){
+   
+      if(coluna > 7)
+         coluna = 0;
+         
+      return seq2[coluna];
+   
+   }
+   
+   else if(sequencia == 3){
+   
+      if(coluna > 8)
+         coluna = 0;
+         
+      return seq3[coluna];
+   
+   }
+   
+   else if(sequencia == 4){
+   
+      if(coluna > 8)
+         coluna = 0;
+         
+      return seq4[coluna];
+   
+   }
+
+}

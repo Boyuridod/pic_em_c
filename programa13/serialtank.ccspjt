@@ -1,0 +1,80 @@
+[PROJECT]
+Target=serialtank.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=serialtank.c
+[Directories]
+Include=
+[D:\projetos_pic\pic_em_c\programa13\serialtank]
+Type=4
+[mru-list]
+1=serialtank.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=02-07-2024
+D1_L=27
+D1_L1=[35486]Project Opened.
+D1_L2=[35536]Started Editing.
+D1_L3=[35884]Stopped Editing.
+D1_L4=[35905]Started Editing.
+D1_L5=[36445]Stopped Editing.
+D1_L6=[36833]Started Editing.
+D1_L7=[39270]Stopped Editing.
+D1_L8=[42967]Started Editing.
+D1_L9=[43791]Stopped Editing.
+TotalEdit=923
+TotalDebug=0
+D1_E=55
+D1_D=0
+D1_L10=[43854]Started Editing.
+D1_L11=[44160]Stopped Editing.
+D1_L12=[44209]Started Editing.
+D1_L13=[44810]Stopped Editing.
+D1_L14=[55699]Started Editing.
+D1_L15=[56422]Stopped Editing.
+D1_L16=[56448]Started Editing.
+D1_L17=[57143]Project Closed.
+D1_L18=[63110]Project Opened.
+D1_L19=[63279]Started Editing.
+D1_L20=[65110]Stopped Editing.
+D1_L21=[65282]Started Editing.
+D1_L22=[67412]Stopped Editing.
+D1_L23=[67692]Started Editing.
+D1_L24=[67993]Stopped Editing.
+D1_L25=[68108]Started Editing.
+D1_L26=[69006]Stopped Editing.
+D1_L27=[69788]Started Editing.
+D2=03-07-2024
+D2_L=4
+D2_L1=[31450]Stopped Editing.
+D2_E=868
+D2_D=0
+D2_L2=[31450]Project Closed.
+D2_L3=[32481]Project Opened.
+D2_L4=[33238]Project Closed.
+
+[Opened Files]
+1=serialtank.c
+t1=32
+2=serialtank.h
+t2=1
+Count=2
+3=..\..\robsonemc\2024-06-05 - Exemplo_07\RX232_LCD.c
+t3=1
+4=..\..\robsonemc\2024-06-05 - Exemplo_07\RX232_LCD.h
+t4=1
+[serialtank.c]
+Type=4
+
+[defines]
+buildcount=33
+[Units]
+Count=1
+1=serialtank (main)

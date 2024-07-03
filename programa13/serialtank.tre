@@ -1,0 +1,12 @@
+ÀÄserialtank
+   ÀÄmain  0/76  Ram=1
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄsetValvula  0/9  Ram=1
+      ÃÄisCheio  0/11  Ram=0
+      ÃÄsetValvula  0/9  Ram=1
+      ÃÄsetHeater  0/9  Ram=1
+      ÃÄgetTemperatura  0/14  Ram=0
+      ÃÄsetHeater  0/9  Ram=1
+      ÃÄsetDespeja  0/9  Ram=1
+      ÃÄisVazio  0/19  Ram=1
+      ÀÄsetDespeja  0/9  Ram=1

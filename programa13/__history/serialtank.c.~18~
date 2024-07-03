@@ -1,0 +1,65 @@
+#include <serialtank.h>
+
+//! Declaração de variáveis
+
+int8 leitura = 0;
+
+#INT_TIMER0
+void  TIMER0_isr(void) 
+{
+
+}
+
+//! Definição de funções
+
+void setValvula(int8 acao);
+void setHeater(int8 acao);
+int1 isCheio();
+
+void main()
+{
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_8|RTCC_8_BIT);      //1,0 ms overflow
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE)
+   {
+      setValvula(1);
+      
+      while(!isCheio()){
+      
+         leitura = getc(0x00);
+      
+      }
+      
+      setValvula(0);
+      
+      setHeater(1);
+
+   }
+
+}
+
+//! Funções
+
+void setValvula(int8 acao){
+
+   putc(0x00);
+   putc(acao);
+
+}
+
+void setHeater(int8 acao){
+
+   putc(0x02);
+   putc(acao);
+
+}
+
+int1 isCheio(){
+
+   putc(0x00);
+   return getc();
+
+}

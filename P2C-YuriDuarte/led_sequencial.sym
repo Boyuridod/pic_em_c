@@ -1,0 +1,226 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029     @INTERRUPT_AREA
+02A     @INTERRUPT_AREA
+02B     @TRIS_C
+02C.0   fimfreq
+02C.1   fim100ms
+02C.2   sistema
+02D     i
+02E     tempo100ms
+02F     coluna
+030-031 valor_potenciometro
+032-033 frequencia
+034-035 modo
+036-037 periodo
+038-039 tempo
+03A-03D analogico
+03E-04D seq0
+04E-056 seq1
+057-05E seq2
+05F-067 seq3
+068-070 seq4
+071-072 @sprintf_string
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07F     @INTERRUPT_AREA
+09C.6   C1OUT
+09C.7   C2OUT
+0A0-0AE seq5
+0AF-0BD seq6
+0BE-0C6 seq7
+0C7-0CA @DIVFF.P1
+0C7-0C8 @ITOF.P2
+0C7     @PSTRINGCN7_643.P3
+0C7     lcd_gotoxy.x
+0C7-0C8 @PRINTF_LU_643.P1
+0C7-0CA @SFTOI.P2
+0C7     @delay_ms1.P3
+0C7     MAIN.@SCRATCH1
+0C7     @PSTRINGC7_643.@SCRATCH1
+0C8     lcd_gotoxy.y
+0C8     MAIN.@SCRATCH2
+0C8     @PSTRINGC7_643.@SCRATCH2
+0C8     @PSTRINGCN7_643.@SCRATCH1
+0C9     muda_leds.sequencia
+0C9     lcd_gotoxy.address
+0C9     MAIN.@SCRATCH3
+0C9     @PSTRINGC7_643.@SCRATCH3
+0C9     @PRINTF_LU_643.@SCRATCH1
+0C9     @PSTRINGCN7_643.@SCRATCH2
+0CA     lcd_gotoxy.@SCRATCH1
+0CA     MAIN.@SCRATCH4
+0CA     @PSTRINGC7_643.@SCRATCH4
+0CA     @PRINTF_LU_643.@SCRATCH2
+0CA     @PSTRINGCN7_643.@SCRATCH3
+0CB-0CE @DIVFF.P1
+0CB-0CE @MULFF.P2
+0CB     lcd_write_cmd.cmd
+0CB     @PRINTF_LU_643.@SCRATCH3
+0CB     @PSTRINGCN7_643.@SCRATCH4
+0CC     @PRINTF_LU_643.@SCRATCH4
+0CD     @PRINTF_LU_643.@SCRATCH5
+0CE     @PRINTF_LU_643.@SCRATCH6
+0CF-0D2 @MULFF.P1
+0CF     @PRINTF_LU_643.@SCRATCH7
+0CF     @DIVFF.@SCRATCH1
+0D0     lcd_write_dat.dat
+0D0     @DIVFF.@SCRATCH2
+0D1     output.port
+0D1     @DIVFF.@SCRATCH3
+0D2     output.dat
+0D2     @DIVFF.@SCRATCH4
+0D3     @MULFF.@SCRATCH1
+0D3     @DIVFF.@SCRATCH5
+0D4     @MULFF.@SCRATCH2
+0D4     @DIVFF.@SCRATCH6
+0D5     @MULFF.@SCRATCH3
+0D6     @MULFF.@SCRATCH4
+0D7     @MULFF.@SCRATCH5
+0FF     @INTERRUPT_AREA
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+107F     @INTERRUPT_AREA
+10FF     @INTERRUPT_AREA
+117F     @INTERRUPT_AREA
+11FF     @INTERRUPT_AREA
+127F     @INTERRUPT_AREA
+12FF     @INTERRUPT_AREA
+137F     @INTERRUPT_AREA
+13FF     @INTERRUPT_AREA
+147F     @INTERRUPT_AREA
+14FF     @INTERRUPT_AREA
+157F     @INTERRUPT_AREA
+15FF     @INTERRUPT_AREA
+167F     @INTERRUPT_AREA
+16FF     @INTERRUPT_AREA
+177F     @INTERRUPT_AREA
+17FF     @INTERRUPT_AREA
+187F     @INTERRUPT_AREA
+18FF     @INTERRUPT_AREA
+197F     @INTERRUPT_AREA
+19FF     @INTERRUPT_AREA
+1A7F     @INTERRUPT_AREA
+1AFF     @INTERRUPT_AREA
+1B7F     @INTERRUPT_AREA
+1BFF     @INTERRUPT_AREA
+1C7F     @INTERRUPT_AREA
+1CFF     @INTERRUPT_AREA
+1D7F     @INTERRUPT_AREA
+1DFF     @INTERRUPT_AREA
+1E7F     @INTERRUPT_AREA
+1EFF     @INTERRUPT_AREA
+1F7F     @INTERRUPT_AREA
+1FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+00004F  TIMER0_isr
+00006A  @const686.call
+00006F  @const702.call
+000075  @const708.call
+00007A  @const709.call
+00007F  @const712.call
+000085  output
+0000BB  lcd_write_cmd
+0000DD  @delay_ms1
+0000F1  lcd_init
+000120  lcd_gotoxy
+000132  lcd_write_dat
+000154  @PSTRINGC7_643
+0001C8  @PRINTF_LU_643
+00022F  @ITOF
+00024E  @MULFF
+0002C5  @SFTOI
+0002E6  @PSTRINGCN7_643
+000360  @DIVFF
+00042E  muda_leds
+0004BE  @cinit1
+0004BE  MAIN
+0004E4  @cinit2
+
+Project Directory:
+    D:\projetos_pic\pic_em_c\P2C-YuriDuarte\
+
+Project Files:
+    led_sequencial.c                                        [03-jul-24 12:03  CRC=083A74B8]
+    led_sequencial.h                                        [03-jul-24 09:17  CRC=C1FCB162]
+    ..\..\..\Desenvolvimento IDE's\PIC Compiler -  CCS v.5.076\PICC\Devices\16F877A.h [15-jan-18 15:53  CRC=63418C39]
+    lcd_8bits.c                                             [22-mai-24 10:15  CRC=62A78AFE]
+
+Source signature=F2C7C84F
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=0114
+
+Units:
+    led_sequencial (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   led_sequencial.xsym
+    Errors:      led_sequencial.err
+    Ext Symbols: led_sequencial.esym
+    INHX8:       led_sequencial.hex
+    Symbols:     led_sequencial.sym
+    List:        led_sequencial.lst
+    Debug/COFF:  led_sequencial.cof
+    Project:     led_sequencial.ccspjt
+    Call Tree:   led_sequencial.tre
+    Statistics:  led_sequencial.STA
